@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   get "welcome/Registration"
   get "welcome/Profile"
   get "welcome/results"
+  get "welcome/user_settings"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
