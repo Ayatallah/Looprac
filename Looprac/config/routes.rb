@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :todos
   resources :posts do
     member do
       put "like" => "posts#upvote"
@@ -12,15 +11,17 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-resources :users do
-  resources :comments
-end
+  resources :users do
+    resources :comments
+  end
 
 
-resources :users do
-  resources :posts
-end
+  resources :users do
+    resources :posts
+  end
 
+  resources :reports
+  
   root 'welcome#index'
 
   get "welcome/Registration"
