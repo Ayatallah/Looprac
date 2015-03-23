@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Looprac</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+	<div class="container-fluid">
+		<div>
+
+			<% if user_signed_in? %>
+			<%= render 'shared/navigation_signed_in' %>
+			<% else %>
+			<%= render 'shared/navigation' %>
+			<% end %>
+
+		</div>
+		<div>
+			<% if notice %>
+ 		 		<p class="alert alert-success"><%= notice %></p>
+			<% end %>
+			<% if alert %>
+  				<p class="alert alert-danger"><%= alert %></p>
+			<% end %>
+			<%= yield %>
+		</div>
+		<div>
+			<%= render 'shared/footer' %>
+		</div>
+	</div>
+</body>
+</html>

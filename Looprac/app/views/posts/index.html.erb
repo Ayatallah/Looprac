@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="col-md-8">
+    <h1 class="page-header">
+      Blog Posts
+      <small>By Looprac</small>
+    </h1>
+  <% @posts.each do |post| %>
+         
+    <h2><%= link_to post.title, post %></h2>
+      <p class="lead">
+        by <%= post.user.username %>
+      </p>  
+
+       <p class="date"><span class="glyphicon glyphicon-time"></span><%= post.created_at.strftime(" %B %d, %Y") %></p>
+     <hr>
+
+     <button type="button" class="btn btn-default"><%= link_to 'Read', post %>
+      <span class="glyphicon glyphicon-chevron-right"></span>
+
+     </button>
+    <% if user_signed_in? and current_user.admin? %>
+      <button type="button" class="btn btn-default"><%= link_to 'Edit', edit_post_path(post) %></button>
+      <button type="button" class="btn btn-warning"><%= link_to 'Destroy', post_path(post),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></button>
+    <% end %>          
+    <!-- this is the old code bit
+    <li class="list-group-item">
+    
+    <h2 class="title"><%= link_to post.title, post %></h2>
+    <p class="date"><%= post.created_at.strftime("%B %d, %Y") %></p>
+    -->
+
+    <button type="button" class="btn btn-info disabled" aria-label="Left Align">
+    <span class="glyphicon glyphicon-thumbs-up glyphicon-align-center" aria-hidden="true"></span>
+    <span class="badge"><%= post.get_upvotes.size %></span>
+  </button>
+
+    
+    <button type="button" class="btn btn-info disabled" aria-label="Left Align">
+    <span class="glyphicon glyphicon-thumbs-down glyphicon-align-center" aria-hidden="true"></span>
+    <span class="badge"><%= post.get_downvotes.size %></span>
+  </button>
+
+ <hr>
+  <% end %>
+  <% if user_signed_in? and current_user.admin? %>
+    <button type="button" class="btn btn-default"><%= link_to 'New Post', new_post_path %></button>
+  <% end %>  
+</ul>
+</div>
+</div>
