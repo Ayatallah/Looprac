@@ -5,7 +5,7 @@ gem 'tzinfo-data'
 gem 'rails', '4.2.0'
 # Use sqlite3 as the database for Active Record
 gem 'social-share-button'
-
+gem "mailboxer"
 gem 'devise'
 gem 'acts_as_votable', '~> 0.10.0'
 
@@ -47,6 +47,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 
+gem 'bootstrap-will_paginate'
+gem 'will_paginate'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

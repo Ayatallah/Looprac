@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
    has_many :comments
    has_many :posts
   acts_as_voter
+  acts_as_messageable
 end

@@ -13,6 +13,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav nav-tabs navbar-nav navbar-right">
         <li> <%= link_to 'Blog', :controller => "/posts" %> </li>
+        <li><%= link_to 'Inbox', conversations_path %></li>
         <!-- <li class"dropdown active">
         	<a href="#" class="dropdown-toggle" data-toggle="dropdown">My Rides <span class="caret"></span></a>
         	<ul class="dropdown-menu">
@@ -26,6 +27,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <%= current_user.username %> &nbsp; <img class="nav-prof-img" role="button" src="/assets/fbdefault.jpg"> <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="/welcome/Profile">View my Profile</a></li>
+
             <li><a href="#">Edit Profile</a></li>
             <li><%= link_to('Edit registration', edit_user_registration_path) %></li>
             <li><a href="#">Settings</a></li>
