@@ -1,17 +1,16 @@
 class ReportsController < ApplicationController
+
 	def show
 		@users = User.all
-		render 'index'
-	end
-
-	def new
 		@report = Report.new
+		render 'index'
 	end
 
 	def create
   		@report = Report.new(report_params)
+  		@report.reporter = current_user.username
   		if @report.save
-    		render 'show'
+    		redirect_to	'/reports/index'
   		else
     		render 'failure'
   		end
