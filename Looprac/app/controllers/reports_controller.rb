@@ -10,9 +10,11 @@ class ReportsController < ApplicationController
   		@report = Report.new(report_params)
   		@report.reporter = current_user.username
   		if @report.save
+  			flash[:notice] = 'User Reported Successfuly!'
     		redirect_to	'/reports/index'
   		else
-    		render 'failure'
+    		flash[:alert] = 'User could not be reported!'
+    		redirect_to	'/reports/index'
   		end
 	end
 
