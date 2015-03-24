@@ -5,11 +5,23 @@
 	<script type="text/javascript">
 		$(function(){
 
-			$(".dropdown-menu li a").click(function() {
+			$(".dmReport li a").click(function() {
 
-				$(".dropdown-toggle:first-child").text($(this).text());
-				$(".dropdown-toggle:first-child").val($(this).text());
-				$('.form-control').val($(this).text());
+				$(".reported:first-child").text($(this).text());
+				$(".reported-toggle:first-child").val($(this).text());
+				$('.form-control-report').val($(this).text());
+
+			});
+
+		});
+
+		$(function(){
+
+			$(".dmReason li a").click(function() {
+
+				$(".reason:first-child").text($(this).text());
+				$(".reason-toggle:first-child").val($(this).text());
+				$('.form-control-reason').val($(this).text());
 
 			});
 

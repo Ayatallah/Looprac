@@ -6,8 +6,8 @@
 			<button class="btn btn-default disabled" type="button">Users</button>
 
 			<div class="btn-group">
-				<button id="drop-togg" class="btn btn-default dropdown-toggle" data-toggle="dropdown"> Select One</span></button> 
-				<ul class="dropdown-menu" role="menu">
+				<button id="drop-togg" class="btn btn-default dropdown-toggle reported" data-toggle="dropdown"> Select One</span></button> 
+				<ul class="dropdown-menu dmReport" role="menu">
 					<% @users.each do |user| %>
 					<% if user.username != current_user.username %>
 					<li> <a href="#"> <%=user.username%> </a></li>
@@ -18,9 +18,26 @@
 		</div>
 
 		<br><br>
+		
+		<div class="btn-group" role="roup">
+			<button class="btn btn-default disabled" type="button">Reasons</button>
+
+			<div class="btn-group">
+				<button id="drop-togg" class="btn btn-default dropdown-toggle reason" data-toggle="dropdown">Select One</span></button> 
+				<ul class="dropdown-menu dmReason" role="menu">
+					<li><a href="#">Negative Attitude</a></li>
+					<li><a href="#">Offensive Laguage</a></li>
+					<li><a href="#">Intentionally Feeding</a></li>
+					<li><a href="#">Leaving or AFK</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<br><br>
 
 		<%= form_for @report do |f| %>
-		<%= f.hidden_field :reported, class: "form-control"%>
+		<%= f.hidden_field :reported, class: "form-control-report"%>
+		<%= f.hidden_field :reason, class: "form-control-reason"%>
 
 		<%= f.submit "Report User", class: "btn btn-primary", type: "submit" %>
 		<% end %>
