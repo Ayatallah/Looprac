@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="placeholder col-sm-12">
-		<h3>Select the User you want to report:</h3>
+		<h3>Select a user you want to report and the reason for the report:</h3>
 
 		<div class="btn-group" role="roup">
 			<button class="btn btn-default disabled" type="button">Users</button>
@@ -9,21 +9,17 @@
 				<button id="drop-togg" class="btn btn-default dropdown-toggle reported" data-toggle="dropdown"> Select One</span></button> 
 				<ul class="dropdown-menu dmReport" role="menu">
 					<% @users.each do |user| %>
-					<% if user.username != current_user.username %>
-					<li> <a href="#"> <%=user.username%> </a></li>
-					<% end %>
+						<% if user.username != current_user.username %>
+							<li> <a href="#"><%=user.username%></a></li>
+						<% end %>
 					<% end %>
 				</ul>
 			</div>
-		</div>
 
-		<br><br>
-		
-		<div class="btn-group" role="roup">
 			<button class="btn btn-default disabled" type="button">Reasons</button>
 
 			<div class="btn-group">
-				<button id="drop-togg" class="btn btn-default dropdown-toggle reason" data-toggle="dropdown">Select One</span></button> 
+				<button id="drop-togg" class="btn btn-default dropdown-toggle reason" data-toggle="dropdown">Select One</button> 
 				<ul class="dropdown-menu dmReason" role="menu">
 					<li><a href="#">Negative Attitude</a></li>
 					<li><a href="#">Offensive Laguage</a></li>
