@@ -13,8 +13,12 @@ class ConversationsController < ApplicationController
 
 	def reply
 		current_user.reply_to_conversation(@conversation, params[:body])
-		flash[:success] = 'Sent'
 		redirect_to conversation_path(@conversation)
+	end
+
+	def destroy
+      @conversation.mark_as_deleted(current_user)
+      redirect_to conversations_path
 	end
 
 	private
