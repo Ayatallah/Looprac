@@ -12,13 +12,20 @@
 
 
 			<div class="media-body">
-				<h6 class="media-heading"><%= message.sender.username %>
-			     says at <%= message.created_at.strftime("%-d %B %Y, %H:%M:%S") %>
+				<h4 class="media-heading">   <%= message.body %></h4>
+			     <%= message.created_at.strftime("%-d %B %Y, %H:%M:%S") %>
 
-			   <%= message.body %>
+			
              </div>
          </div>
 			<% end %>
 		</div>
 	</div>
 </div>
+
+<%= form_tag reply_conversation_path(@conversation), method: :post do %>
+	<div class="form-group">
+		<%= text_area_tag 'body', nil, cols: 3, class: 'form-control', placeholder: 'Write a reply..', required: true %>
+	</div>
+	<%= submit_tag "Send Message", class: 'btn btn-primary' %>
+	<% end %>
