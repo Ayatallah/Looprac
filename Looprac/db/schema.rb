@@ -62,6 +62,16 @@ ActiveRecord::Schema.define(version: 20150327161039) do
     t.datetime "updated_at"
     t.string   "username"
     t.boolean  "admin",                  default: false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "age"
+    t.integer  "rank",                   default: 1
+    t.string   "car_model"
+    t.boolean  "air_conditioned",        default: false
+    t.string   "facebook"
+    t.string   "twitter"
+    t.string   "googleplus"
+    t.integer  "gender"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
