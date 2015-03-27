@@ -1,0 +1,18 @@
+ <div class="container">
+  <div class="col-lg-8">
+    <h1>
+      <%= @landmark.name %>
+    </h1>
+
+    <hr>
+    <p class="date"><span class="glyphicon glyphicon-time"></span><%= @landmark.created_at.strftime(" %B %d, %Y") %>
+    </p>
+
+    <hr>
+      <h4>Share on Twitter or Facebook or G+</h4>
+          <%= social_share_button_tag(@landmark.name, :popup => "true") %>
+    <hr>
+ 
+    <button type="button" class="btn btn-default"><%= link_to 'Back', landmarks_path %></button>
+  </div>
+</div>
