@@ -1,5 +1,9 @@
 <li class="list-group-item clearfix">
-	<%= link_to conversation.subject, conversation_path(conversation) %>
+
+	<%= names_other_participants_helper(conversation) %>
+
+	<p><%= link_to conversation.subject, conversation_path(conversation) %></p>
+     
 
 	<div class="btn-group-vertical pull-right">
 		<%= link_to 'Delete', conversation_path(conversation), class: 'btn btn-xs btn-danger', method: :delete, data: {confirm: 'Are you sure?'} %>
