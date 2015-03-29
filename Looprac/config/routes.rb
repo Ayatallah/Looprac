@@ -11,6 +11,7 @@ Rails.application.routes.draw do
  resources :conversations do
    member do
     post :reply
+    post :mark_as_read
    end
  end
   resources :posts do

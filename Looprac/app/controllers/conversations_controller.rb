@@ -21,6 +21,11 @@ class ConversationsController < ApplicationController
       redirect_to conversations_path
 	end
 
+    def mark_as_read
+       @conversation.mark_as_read(current_user)
+       redirect_to conversations_path
+    end
+
 	private
     def get_conversation
     	@conversation ||= @mailbox.conversations.find(params[:id])

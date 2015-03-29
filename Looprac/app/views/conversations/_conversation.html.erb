@@ -6,6 +6,10 @@
      
 
 	<div class="btn-group-vertical pull-right">
+		<% if conversation.is_unread?(current_user) %>
+		<%= link_to 'Mark as read', mark_as_read_conversation_path(conversation), class: 'btn btn-xs btn-info', method: :post %>
+		<% end %>
+		 
 		<%= link_to 'Delete', conversation_path(conversation), class: 'btn btn-xs btn-danger', method: :delete, data: {confirm: 'Are you sure?'} %>
 	</div>
 
