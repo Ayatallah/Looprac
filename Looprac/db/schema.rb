@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150328180327) do
+ActiveRecord::Schema.define(version: 20150331114146) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "body"
@@ -26,11 +26,11 @@ ActiveRecord::Schema.define(version: 20150328180327) do
 
   create_table "landmarks", force: :cascade do |t|
     t.string   "name"
-    t.decimal  "logitude"
-    t.decimal  "latitude"
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.float    "longitude"
+    t.float    "latitude"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -50,6 +50,18 @@ ActiveRecord::Schema.define(version: 20150328180327) do
     t.datetime "updated_at", null: false
     t.string   "reason"
   end
+
+  create_table "requests", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "ride_id"
+    t.boolean  "respond"
+    t.string   "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "requests", ["ride_id"], name: "index_requests_on_ride_id"
+  add_index "requests", ["user_id"], name: "index_requests_on_user_id"
 
   create_table "rides", force: :cascade do |t|
     t.integer  "user_id"
