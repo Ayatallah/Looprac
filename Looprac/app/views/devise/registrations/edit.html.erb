@@ -8,7 +8,7 @@
       <%= devise_error_messages! %>
 
       <div class="form-group">
-          <%= f.label :username, class: 'col-sm-2 control-label'  %>
+          <%= f.label :username, class: 'col-sm-3 control-label'  %>
           <div class="col-sm-6">
               <%= f.text_field :username, autofocus: true, class: 'form-control'  %>
           </div>
@@ -16,14 +16,14 @@
 
 
       <div class="form-group">
-          <%= f.label :email, class: 'col-sm-2 control-label'  %>
+          <%= f.label :email, class: 'col-sm-3 control-label'  %>
           <div class="col-sm-6">
               <%= f.email_field :email, class: 'form-control'  %>
           </div>
       </div>
 
       <div class="form-group">
-          <%= f.label :new_password, class: 'col-sm-2 control-label'  %>
+          <%= f.label :new_password, class: 'col-sm-3 control-label'  %>
           <div class="col-sm-6">
               <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder:"Leave blank if you don't want to change it"  %>
           </div>
@@ -31,14 +31,14 @@
 
 
       <div class="form-group">
-          <%= f.label :password_confirmation, class: 'col-sm-2 control-label' %>
+          <%= f.label :password_confirmation, class: 'col-sm-3 control-label' %>
           <div class="col-sm-6">
               <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder:"Confirm your new password"  %>
           </div>
       </div>
 
       <div class="form-group">
-          <%= f.label :current_password, class: 'col-sm-2 control-label' %>
+          <%= f.label :current_password, class: 'col-sm-3 control-label' %>
           <div class="col-sm-6">
               <%= f.password_field :current_password, autocomplete: "off", class: 'form-control', placeholder:"Enter your current password to confirm your changes" %>
           </div>
