@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150331114146) do
+ActiveRecord::Schema.define(version: 20150403131112) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "body"
@@ -43,37 +43,16 @@ ActiveRecord::Schema.define(version: 20150331114146) do
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
-  create_table "reports", force: :cascade do |t|
-    t.string   "reporter"
-    t.string   "reported"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "reason"
-  end
-
   create_table "requests", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "ride_id"
-    t.boolean  "respond"
-    t.string   "message"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "offerer_id"
+    t.integer "ride_id"
+    t.integer "requester_id"
+    t.boolean "response"
+    t.text    "message"
   end
 
-  add_index "requests", ["ride_id"], name: "index_requests_on_ride_id"
-  add_index "requests", ["user_id"], name: "index_requests_on_user_id"
-
-  create_table "rides", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "landmark_id"
-    t.integer  "seatNum"
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "rides", ["landmark_id"], name: "index_rides_on_landmark_id"
-  add_index "rides", ["user_id"], name: "index_rides_on_user_id"
+# Could not dump table "rides" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "todos", force: :cascade do |t|
     t.string   "title"
