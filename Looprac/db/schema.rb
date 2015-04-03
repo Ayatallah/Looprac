@@ -43,14 +43,6 @@ ActiveRecord::Schema.define(version: 20150331114146) do
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
-  create_table "reports", force: :cascade do |t|
-    t.string   "reporter"
-    t.string   "reported"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "reason"
-  end
-
   create_table "requests", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "ride_id"

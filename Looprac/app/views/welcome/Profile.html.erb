@@ -21,16 +21,18 @@
              <div class="panel-heading">
                 <p class="main-color">About my car</p>
             </div>
-            <div class="panel-body">Car info goes here.
-
+            <div class="panel-body text-right">
+            <span class="pull-left"><strong class="">Car Model: </strong></span> <% if current_user.car_model.blank? %><%= %> <% else %> <%= current_user.car_model %> <% end %>
             </div>
         </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <p class="main-color">Social media</p>
                 </div>
-                <div class="panel-body"><a href="http://Facebook.com">
-                    Facebook</a>
+                <div class="panel-body">
+                <% if current_user.facebook.blank? %><%= %> <% else %> <%= link_to("Facebook", current_user.facebook) %> <% end %>
+                <% if current_user.twitter.blank? %><%= %> <% else %> <%= link_to("Twitter", current_user.twitter) %> <% end %>
+                <% if current_user.googleplus.blank? %><%= %> <% else %> <%= link_to("Google Plus", current_user.googleplus) %> <% end %>
                 </div>
             </div>
           
