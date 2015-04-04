@@ -15,4 +15,12 @@ class RequestsController < ApplicationController
 		end	
 		#@requesters=User.where(:requester_id => )
 	end	
+
+	def edit
+		@request=Request.find(params[:id])
+		@flag = params[:flag]
+		@request.response=@flag		
+		@request.save
+		redirect_to requests_path
+	end	
 end
