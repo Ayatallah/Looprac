@@ -1,0 +1,27 @@
+<ul class="nav nav-tabs">
+  <li role="presentation" class="active"><a href="#">My Rides</a></li>
+  <li role="presentation"><a href="#">Requests</a></li>
+</ul>
+<br>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <!--<div class="panel-heading">My Offered Rides</div>-->
+
+  <!-- Table -->
+  <table class="table">
+  	<tr style="text-align: center; background-color: LightGray ">
+    	<td>From</td>
+    	<td>To</td>
+    	<td>No. of seats</td>
+    	<td>Extra info</td>
+    </tr>
+    <% @rides.each do |r| %>
+    	<tr style="text-align: center;">
+    		<td><%= @landmarks.find(r.source_id).name %></td>
+    		<td><%= @landmarks.find(r.destination_id).name %></td>
+    		<td><%= r.seatNum %></td>
+    		<td><%= r.description %></td>
+    	</tr>
+    <% end %>
+  </table>
+</div>
