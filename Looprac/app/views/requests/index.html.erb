@@ -6,12 +6,16 @@
 
 <div class="list-group">
   <% @i=0 %>
+  <% @k=0 %>
   <% @requests.each do |r| %>
     <a href="#" class="list-group-item">
       <h4 class="list-group-item-heading"><%= @requesters.fetch(@i).username%> requested to take your ride</h4>
-      <p class="list-group-item-text">This user requested to take your ride <%= r.ride_id %> </p>
+      <p class="list-group-item-text">This user requested to take your ride from <%= @landmarks.fetch(@k).name %>
+      to <%= @landmarks.fetch(@k+1).name %> </p>
     </a>
-    <% @i=@i+1 %>  
+    <% @i=@i+1 %>
+    <% @k=@k+2 %>  
+    <br>
   <% end %>  
 </div>  
    
