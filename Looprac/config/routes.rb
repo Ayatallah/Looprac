@@ -22,6 +22,7 @@ resources :users do
 end
 
 resources :rides
+resources :requests
 
 
   root 'welcome#index'

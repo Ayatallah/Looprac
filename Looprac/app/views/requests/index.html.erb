@@ -1,0 +1,18 @@
+<ul class="nav nav-tabs">
+  <li role="presentation" > <li><%= link_to 'Rides', :controller => "/rides" %></li> </li>
+  <li role="presentation" class="active"><a href="#">Requests</a></li>
+</ul>
+<br>
+
+<div class="list-group">
+  <% @i=0 %>
+  <% @requests.each do |r| %>
+    <a href="#" class="list-group-item">
+      <h4 class="list-group-item-heading"><%= @requesters.fetch(@i).username%> requested to take your ride</h4>
+      <p class="list-group-item-text">This user requested to take your ride <%= r.ride_id %> </p>
+    </a>
+    <% @i=@i+1 %>  
+  <% end %>  
+</div>  
+   
+ 
