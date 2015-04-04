@@ -21,6 +21,9 @@ resources :users do
   resources :posts
 end
 
+resources :rides
+
+
   root 'welcome#index'
 
   get "welcome/Registration"
