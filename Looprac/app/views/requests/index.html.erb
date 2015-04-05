@@ -3,6 +3,14 @@
   <li role="presentation" class="active"><a href="#">Requests</a></li>
 </ul>
 <br>
+<script type="text/javascript">
+  function changeTextAccept() {
+    document.getElementById('acceptButton').innerHTML = 'Ride Request Accepted';
+  }
+  function changeTextReject() {
+    document.getElementById('rejectButton').innerHTML = 'Ride Request Rejected';
+  }
+</script>
 
 <div class="list-group">
   <% @i=0 %>
@@ -13,8 +21,15 @@
       <h4 class="list-group-item-heading"><%= @requesters.fetch(@i).username%> requested to take your ride</h4>
       <p class="list-group-item-text">This user requested to take your ride from <%= @landmarks.fetch(@k).name %>
       to <%= @landmarks.fetch(@k+1).name %> </p>
-      <button type="button" class="btn btn-default"><%= link_to 'Accept', edit_request_path(r, :flag => true) %></button>
-      <button type="button" class="btn btn-default"><%= link_to 'Reject', edit_request_path(r, :flag => false) %></button>
+      <br>
+      <% if r.response == true %>
+        <p style="background-color: LightGray; font-size: 90%"> Ride Request Accepted </p>
+      <% elsif r.response == false %>
+        <p style="background-color: LightGray; font-size: 90%"> Ride Request Rejected </p>
+      <% else %>
+        <button id="acceptButton" type="button" class="btn btn-default" onclick="changeTextAccept()"><%= link_to 'Accept', edit_request_path(r, :flag => true) %></button>
+        <button id="rejectButton" type="button" class="btn btn-default" onclick="changeTextReject()"><%= link_to 'Reject', edit_request_path(r, :flag => false) %></button>
+      <% end %>
     </a>  
       <!-- Accept/reject button -->
       <!--
@@ -35,6 +50,7 @@
   
     <% @i=@i+1 %>
     <% @k=@k+2 %>  
+    <br>
     <br>
   <% end %>  
 </div>  
