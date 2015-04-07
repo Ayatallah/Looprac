@@ -41,9 +41,15 @@
                 <% else %>
                     <li class="list-group-item text-right"><span class="pull-left"><strong>Title</strong></span>  <%= @user.level %></li>
                 <% end %>
+
                 <% if @userating.blank? %>
                     <li class="list-group-item text-right"><span class="pull-left"><strong><%= "Had ride with #{@user.username}?"%> </strong></span>  <%= link_to "Rate #{@user.username}!", new_user_userating_path(@user) %></li>
+                <% else %>
+                    <% @userating.each do |userating| %>
+                    <li class="list-group-item text-right"><span class="pull-left"><strong><%= "You Rated #{@user.username}"%></strong></span> <%= userating.rating %> </li>
+                    <% end %>
                 <% end %>
+
             </ul>
         </div>
         <div class="col-sm-9">

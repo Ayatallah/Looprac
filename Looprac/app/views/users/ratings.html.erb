@@ -1,0 +1,20 @@
+<div class="container log-in">
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+	    	<h3 class="main-color center"><%= "#{@user.username}'s Reviews"%> </h3>
+	    </div>
+	    <div class="panel-body center">
+	    	<% @useratings.each do |userating| %>
+			<%= link_to userating.rater.username, userating.rater %>
+			<%= userating.rating %>
+			<% if userating.review.blank? %>
+				<h4 class="main-color center"> No Review </h4>
+			<% else %>
+				<%= userating.review %>
+			<% end %>
+			<br>
+			<% end %>
+	    </div>
+	</div>
+</div>
