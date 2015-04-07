@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150403131850) do
+ActiveRecord::Schema.define(version: 20150407110732) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "body"
@@ -51,6 +51,14 @@ ActiveRecord::Schema.define(version: 20150403131850) do
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
+  create_table "reports", force: :cascade do |t|
+    t.string   "reporter"
+    t.string   "reported"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "reason"
+  end
+
   create_table "requests", force: :cascade do |t|
     t.integer "offerer_id"
     t.integer "ride_id"
@@ -59,12 +67,18 @@ ActiveRecord::Schema.define(version: 20150403131850) do
     t.text    "message"
   end
 
-# Could not dump table "rides" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
-
   create_table "todos", force: :cascade do |t|
     t.string   "title"
     t.text     "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "useratings", force: :cascade do |t|
+    t.integer  "rating"
+    t.string   "review"
+    t.integer  "rated_id"
+    t.integer  "rater_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -95,6 +109,8 @@ ActiveRecord::Schema.define(version: 20150403131850) do
     t.string   "googleplus"
     t.integer  "gender"
     t.boolean  "banned"
+    t.integer  "points"
+    t.string   "level"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
