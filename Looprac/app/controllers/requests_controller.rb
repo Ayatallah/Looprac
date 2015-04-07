@@ -1,6 +1,7 @@
 class RequestsController < ApplicationController
+
 	def index
-		@requests=Request.where(:offerer_id => current_user.id)
+		@requests=Request.where(:offerer_id => current_user.id).reverse
 
 		@landmarks=Array.new
 		@requesters=Array.new
@@ -15,6 +16,17 @@ class RequestsController < ApplicationController
 		end	
 		#@requesters=User.where(:requester_id => )
 	end	
+
+	def create
+		@ride_id=params[:ride_id]
+		@ride=Ride.find(@ride_id)
+		@offerer_id=@ride.user_id
+		@requester_id=params[:requester_id]
+		@request = Request.new(:offerer_id => @offerer_id, :ride_id => @ride_id, :requester_id => @requester_id)
+		@request.save
+		redirect_to rides_path
+
+	end
 
 	def edit
 		@request=Request.find(params[:id])

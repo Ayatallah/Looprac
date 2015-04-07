@@ -20,7 +20,7 @@ end
 resources :users do
   resources :posts
 end
-
+get "rides/userView"
 resources :rides
 resources :requests
 
@@ -30,6 +30,7 @@ resources :requests
   get "welcome/Registration"
   get "welcome/Profile"
   get "welcome/results"
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
