@@ -22,6 +22,12 @@ resources :users do
   resources :posts
 end
 
+resources :users do
+  member do
+    get :ban
+  end
+end
+
   root 'welcome#index'
 
   get "welcome/Registration"
