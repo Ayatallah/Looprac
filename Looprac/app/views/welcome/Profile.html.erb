@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<% unless current_user.blank? %>
+<% if current_user.blank? %>
+    <%= link_to 'Back to Home', root_path %> 
+<% else %>
     <html>
     <head>
         <title>Profile</title>

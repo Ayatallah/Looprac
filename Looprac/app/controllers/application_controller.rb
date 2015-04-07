@@ -4,15 +4,14 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
-  before_action :banned?
+  before_filter :banned?
 
 
   def banned?
   	if current_user.present? && current_user.banned?
   		flash[:alert] = 'This account has been suspended'
+      sign_out current_user
   		root_path
-  		sign_out current_user
-  		
   	end
   end
 
