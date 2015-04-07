@@ -33,8 +33,17 @@
                 <li class="list-group-item text-muted main-color">Activity</li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong>Rides offered</strong></span> 15</li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong>Rides joined</strong></span> 13</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Rating</strong></span> 3.7</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Thumbs up</strong></span> 10</li>
+                
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Score</strong></span> <%= @user.points %> </li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong> Score based on</strong></span> <%= "#{@useratings.count} Reviews" %></li>
+                <% if @user.level.blank? %>
+                    <li class="list-group-item text-right"><span class="pull-left"><strong>Title</strong></span>  <%= "LooPrac Rookie" %></li>
+                <% else %>
+                    <li class="list-group-item text-right"><span class="pull-left"><strong>Title</strong></span>  <%= @user.level %></li>
+                <% end %>
+                <% if @userating.blank? %>
+                    <li class="list-group-item text-right"><span class="pull-left"><strong><%= "Had ride with #{@user.username}?"%> </strong></span>  <%= link_to "Rate #{@user.username}!", new_user_userating_path(@user) %></li>
+                <% end %>
             </ul>
         </div>
         <div class="col-sm-9">

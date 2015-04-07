@@ -15,7 +15,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :twitter
       t.string :googleplus
       t.integer :points, default: 0
-      t.string :level
+      t.string :level, default: "LooPrac Rookie"
 
       ## Database authenticatable
       t.string :email,              null: false, default: ""

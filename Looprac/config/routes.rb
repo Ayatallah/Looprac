@@ -21,6 +21,16 @@ resources :users do
   resources :posts
 end
 
+resources :users do
+  resources :useratings, except: [:show, :edit]
+end
+
+resources :users do
+  member do
+    get :ratings
+  end
+end
+
   root 'welcome#index'
 
   get "welcome/Registration"
