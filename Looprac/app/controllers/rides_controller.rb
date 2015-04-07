@@ -6,6 +6,9 @@ class RidesController < ApplicationController
 		@ride = Ride.new
 	end
 
+	def show
+	end
+
 	def create
   		@ride = Ride.new(ride_params)
   		@ride.user_id = current_user.id
@@ -16,6 +19,26 @@ class RidesController < ApplicationController
     		flash[:alert] = 'Could not offer this ride!'
     		redirect_to	'/rides'
   		end
+	end
+
+	def edit
+		@ride = Ride.find(params[:id])
+	end
+
+	def update
+  		@ride = Ride.find(params[:id])
+ 
+  		if @ride.update(post_params)
+    		redirect_to @ride
+  		else
+    		render 'edit'
+  		end
+	end
+	
+	def destroy
+  		@ride = Ride.find(params[:id])
+  		@ride.destroy
+  		redirect_to '/welcome'
 	end
 
 	def get_ids
@@ -31,4 +54,6 @@ class RidesController < ApplicationController
 	def ride_params
 		params.require(:ride).permit(:source_id, :destination_id, :seatNum, :description)
 	end
+
+
 end
