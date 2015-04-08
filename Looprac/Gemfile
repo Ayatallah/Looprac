@@ -10,6 +10,12 @@ gem 'devise'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'pry'
 group :development, :test do
+   gem 'rspec', ">=1.2.2"
+    gem 'rspec-rails', ">=1.2.2"
+    gem 'capybara'
+    gem 'cucumber-rails', :require => false
+    gem 'cucumber-rails-training-wheels' 
+    gem 'database_cleaner'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
