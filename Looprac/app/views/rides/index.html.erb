@@ -1,11 +1,45 @@
+<br>
 <div class="list-group">
   <% @rides.each do |r| %>
-    <a href="#" class="list-group-item">
-    <h4 class="list-group-item-heading">Ride from <%= r.source.name %> to <%= r.destination.name %> </h4>
-    <p class="list-group-item-text"> Number of seats: <%= r.seatNum %> </p>
-    <p class="list-group-item-text"> Description: <%= r.description %> </p>
-  </a>
-  <br>
+
+    <div class="list-group-item clearfix">
+      <h4 class="list-group-item-heading"><%= @users.find(r.user_id).username %> offered a ride from <%= @landmarks.find(r.source_id).name %> to <%= @landmarks.find(r.destination_id).name %> </h4>
+      <p class="list-group-item-text"> Number of seats: <%= r.seatNum %> </p>
+      <p class="list-group-item-text"> Description: <%= r.description %> </p>
+      <% if not current_user.id == r.user_id  %>
+        <br>
+        <% if @ride_req_array.fetch(r.id).include?(current_user.id) %>
+           <p style="background-color: #0cace7; font-size: 90%"> Ride Request sent </p>
+        <% else %>
+          <button type="button" class="btn btn-default" ><%= link_to 'Send Request', requests_path(:ride_id => r.id, :requester_id => current_user.id), :method => :post %></button>
+        <% end %>    
+      <% end %>
+    </div>
+    <br>  
   <% end %>
   
 </div>
+
+<!-- <div class="panel panel-default">
+  Default panel contents 
+  <div class="panel-heading">My Offered Rides</div>
+
+   Table 
+  <table class="table">
+  	<tr style="text-align: center; background-color: LightGray ">
+    	<td>From</td>
+    	<td>To</td>
+    	<td>No. of seats</td>
+    	<td>Extra info</td>
+    </tr>
+    <% @rides.each do |r| %>
+    	<tr style="text-align: center;">
+    		<td><%= @landmarks.find(r.source_id).name %></td>
+    		<td><%= @landmarks.find(r.destination_id).name %></td>
+    		<td><%= r.seatNum %></td>
+    		<td><%= r.description %></td>
+    	</tr>
+    <% end %>
+  </table>
+</div> 
+-->

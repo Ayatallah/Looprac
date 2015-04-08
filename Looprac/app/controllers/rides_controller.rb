@@ -1,17 +1,23 @@
 class RidesController < ApplicationController
-
+	
 	def index
 		@rides = Ride.search(params[:searchStart],params[:searchEnd])
 	end
 
 	def show
-	end
+	end	
 
 	def offer
 		@landmarks = Landmark.all
 		@ids = get_ids
 		@ride = Ride.new
-	end
+	end	
+
+	def userView
+		@rides=Ride.where(:user_id => current_user.id).reverse
+		@landmarks=Landmark.all
+	end	
+
 
 	def create
   		@ride = Ride.new(ride_params)
