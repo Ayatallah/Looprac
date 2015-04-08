@@ -26,11 +26,12 @@ ActiveRecord::Schema.define(version: 20150407110732) do
 
   create_table "landmarks", force: :cascade do |t|
     t.string   "name"
-    t.float    "latitude"
-    t.float    "longitude"
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.float    "longitude"
+    t.float    "latitude"
+
   end
 
   create_table "lmratings", force: :cascade do |t|
@@ -67,14 +68,6 @@ ActiveRecord::Schema.define(version: 20150407110732) do
     t.text    "message"
   end
 
-  create_table "rides", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "source_id"
-    t.integer "destination_id"
-    t.integer "seatNum"
-    t.string  "description"
-  end
-
   create_table "useratings", force: :cascade do |t|
     t.integer  "rating"
     t.string   "review"
@@ -85,20 +78,6 @@ ActiveRecord::Schema.define(version: 20150407110732) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "username"
-    t.boolean  "admin",                  default: false
-    t.integer  "gender"
-    t.boolean  "banned",                 default: false
-    t.string   "first_name"
-    t.string   "last_name"
-    t.integer  "age"
-    t.string   "car_model"
-    t.boolean  "air_conditioned",        default: false
-    t.string   "facebook"
-    t.string   "twitter"
-    t.string   "googleplus"
-    t.integer  "points",                 default: 0
-    t.string   "level"
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
@@ -111,6 +90,21 @@ ActiveRecord::Schema.define(version: 20150407110732) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "username"
+    t.boolean  "admin",                  default: false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "age"
+    t.integer  "rank",                   default: 1
+    t.string   "car_model"
+    t.boolean  "air_conditioned",        default: false
+    t.string   "facebook"
+    t.string   "twitter"
+    t.string   "googleplus"
+    t.integer  "gender"
+    t.boolean  "banned"
+    t.integer  "points"
+    t.string   "level"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
