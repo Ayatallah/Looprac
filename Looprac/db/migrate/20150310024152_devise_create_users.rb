@@ -6,14 +6,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.boolean :admin, default: false
       t.integer :gender
       t.boolean :banned, default: false
-      t.string :first_name
-      t.string :last_name
-      t.integer :age
-      t.string :car_model
-      t.boolean :air_conditioned, default: false
-      t.string :facebook
-      t.string :twitter
-      t.string :googleplus
+     
       t.integer :points, default: 0
       t.string :level
 
