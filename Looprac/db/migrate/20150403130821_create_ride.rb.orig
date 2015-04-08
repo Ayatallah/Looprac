@@ -1,0 +1,14 @@
+class CreateRide < ActiveRecord::Migration
+  def change
+    create_table :rides do |t|
+<<<<<<< HEAD
+=======
+   		t.integer :user_id
+  		t.integer :source_id
+  		t.integer :destination_id
+  		t.integer :seatNum
+  		t.string :description
+>>>>>>> master
+    end
+  end
+end
