@@ -12,7 +12,13 @@ Rails.application.routes.draw do
        put "unlike" => "posts#downvote"
     end
   end
-
+  resources :messages
+ resources :conversations do
+   member do
+    post :reply
+    post :mark_as_read
+   end
+ end
   resources :posts do
     resources :comments
   end

@@ -16,4 +16,13 @@ class User < ActiveRecord::Base
    has_many :user_as_offerer, :class_name => 'Request', :foreign_key => 'offerer_id'
    has_many :user_as_requester, :class_name => 'Request', :foreign_key => 'Requester_id'
   acts_as_voter
+  acts_as_messageable
+
+  def mailboxer_email(object)
+  email
+end
+
+ def name(object)
+ 	username
+ end
 end
