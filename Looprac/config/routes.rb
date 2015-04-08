@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
+
+  get "rides/offer"
   resources :rides
   resources :reports
   resources :posts do

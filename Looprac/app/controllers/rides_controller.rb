@@ -1,6 +1,12 @@
 class RidesController < ApplicationController
 
 	def index
+	end
+
+	def show
+	end
+
+	def offer
 		@landmarks = Landmark.all
 		@ids = get_ids
 		@ride = Ride.new
@@ -11,10 +17,10 @@ class RidesController < ApplicationController
   		@ride.user_id = current_user.id
 		if @ride.save
 			flash[:notice] = 'Ride offered Successfuly!'
-    		redirect_to	'/rides'
+    		redirect_to	'/rides/offer'
 		else
     		flash[:alert] = 'Could not offer this ride!'
-    		redirect_to	'/rides'
+    		redirect_to	'/rides/offer'
   		end
 	end
 
