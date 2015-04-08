@@ -49,7 +49,9 @@
                     <li class="list-group-item text-right"><span class="pull-left"><strong><%= "You Rated #{@user.username}"%></strong></span> <%= userating.rating %> </li>
                     <% end %>
                 <% end %>
-
+                <% if current_user.admin? %>
+                    <li class="list-group-item text-muted main-color"><%= link_to "View #{@user.username} Reviews" , ratings_user_path(@user) %> </li>
+                <% end %>
             </ul>
         </div>
         <div class="col-sm-9">
