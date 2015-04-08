@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
+
+  devise_for :users,
+             :controllers => { :sessions => "sessions"}
+  
+
   resources :rides
   resources :reports
   resources :posts do
@@ -20,6 +24,12 @@ end
 
 resources :users do
   resources :posts
+end
+
+resources :users do
+  member do
+    get :ban
+  end
 end
 
   root 'welcome#index'
