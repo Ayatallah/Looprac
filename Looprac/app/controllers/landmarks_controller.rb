@@ -19,7 +19,7 @@ before_filter :ensure_admin!, except: [:show , :index]
 	end
 
 	def create
-  		  @landmark = Landmark.new(landmark_params)
+  		 @landmark = Landmark.new(landmark_params)
        		if @landmark.save
     		redirect_to @landmark
   		else

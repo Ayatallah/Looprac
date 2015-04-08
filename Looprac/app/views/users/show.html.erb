@@ -1,8 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Profile</title>
-</head>
 <body class="landing">
     <div class="container">
         <br></br>
@@ -10,12 +5,12 @@
         <div class="col-sm-3">
             <!--left col-->
             <ul class="list-group">
-                <li class="list-group-item text-muted main-color" contenteditable="false">Profile</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Name</strong></span><%= current_user.username %></li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span><%= current_user.created_at.strftime("%d.%m.%Y") %></li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Last seen</strong></span><%= current_user.last_sign_in_at.strftime("%d.%m.%Y") %></li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Rank: </strong></span><%= current_user.sign_in_count %></li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Gender:</strong></span><% if current_user.gender == 1 %> <%= "Female" %> <% else %> <%= "Male" %> <% end %></li>
+                <li class="list-group-item text-muted main-color" contenteditable="false">Personal Info</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Userame</strong></span><%= @user.username %></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span><%= @user.created_at.strftime("%d.%m.%Y") %></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Last seen</strong></span><%= @user.last_sign_in_at.strftime("%d.%m.%Y") %></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Rank: </strong></span><%= @user.sign_in_count %></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Gender:</strong></span><% if @user.gender == 1 %> <%= "Female" %> <% else %> <%= "Male" %> <% end %></li>
             </ul>
             <div class="panel panel-default">
              <div class="panel-heading">
@@ -45,7 +40,7 @@
         <div class="col-sm-9">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <p class="main-color"><%= current_user.username %>'s Bio</p>
+                    <p class="main-color"><%= @user.first_name %>'s Bio</p>
                 </div>
                 <div class="panel-body"> A description about me.
 
@@ -56,4 +51,3 @@
     <br></br>
     </div>
 </body>
-</html>
