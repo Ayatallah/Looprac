@@ -42,6 +42,9 @@ resources :users do
   end
 end
 
+resources :landmarks do
+  resources :lmratings, except: [:edit]
+end
   root 'welcome#index'
 
   get "welcome/Registration"
