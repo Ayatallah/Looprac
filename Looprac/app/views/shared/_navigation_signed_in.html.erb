@@ -12,6 +12,9 @@
           </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav nav-tabs navbar-nav navbar-right">
+<<<<<<< HEAD
+        <li> <%= link_to 'Blog', :controller => "/posts" %> </li>
+=======
         <li> <%= link_to  'Offer a Ride!', :controller => "rides" %> </li>
         <li> <%= link_to 'Blog', :controller => "posts" %> </li>
         <!-- <li class"dropdown active">
@@ -22,11 +25,12 @@
             <li><a href="#">Ride 3</a></li>
           </ul>
         </li> -->
+>>>>>>> master
 
          <li class"dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <%= current_user.username %> &nbsp; <img class="nav-prof-img" role="button" src="/assets/fbdefault.jpg"> <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="/welcome/Profile">View my Profile</a></li>
+            <li><%= link_to('View My Profile', '/welcome/Profile') %></li>
             <li><%= link_to 'Users', :controller => "/users" %></li>
             <li><%= link_to('Edit registration', edit_user_registration_path) %></li>
             <li><a href="#">Settings</a></li>

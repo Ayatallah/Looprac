@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20150407110732) do
     t.datetime "updated_at",  null: false
     t.float    "longitude"
     t.float    "latitude"
+
   end
 
   create_table "lmratings", force: :cascade do |t|
@@ -65,13 +66,6 @@ ActiveRecord::Schema.define(version: 20150407110732) do
     t.integer "requester_id"
     t.boolean "response"
     t.text    "message"
-  end
-
-  create_table "todos", force: :cascade do |t|
-    t.string   "title"
-    t.text     "notes"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "useratings", force: :cascade do |t|
