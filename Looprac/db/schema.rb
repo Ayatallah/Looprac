@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20150407110732) do
 
+
   create_table "comments", force: :cascade do |t|
     t.text     "body"
     t.integer  "post_id"
@@ -52,14 +53,6 @@ ActiveRecord::Schema.define(version: 20150407110732) do
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
-  create_table "reports", force: :cascade do |t|
-    t.string   "reporter"
-    t.string   "reported"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "reason"
-  end
-
   create_table "requests", force: :cascade do |t|
     t.integer "offerer_id"
     t.integer "ride_id"
@@ -94,14 +87,15 @@ ActiveRecord::Schema.define(version: 20150407110732) do
     t.boolean  "admin",                  default: false
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "age"
+    t.integer  "age",                    default: 0
     t.integer  "rank",                   default: 1
-    t.string   "car_model"
+    t.string   "car_model",              default: ""
     t.boolean  "air_conditioned",        default: false
-    t.string   "facebook"
-    t.string   "twitter"
-    t.string   "googleplus"
+    t.string   "facebook",               default: ""
+    t.string   "twitter",                default: ""
+    t.string   "googleplus",             default: ""
     t.integer  "gender"
+    t.integer  "percentage",             default: 0
     t.boolean  "banned"
     t.integer  "points"
     t.string   "level"

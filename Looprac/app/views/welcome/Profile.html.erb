@@ -1,9 +1,10 @@
+<% calculate_completition(current_user) %>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Profile</title>
 </head>
-<body class="landing">
+<body>
     <div class="container">
         <br></br>
         <div class="row">
@@ -21,16 +22,18 @@
              <div class="panel-heading">
                 <p class="main-color">About my car</p>
             </div>
-            <div class="panel-body">Car info goes here.
-
+            <div class="panel-body text-right">
+            <span class="pull-left"><strong class="">Car Model: </strong></span> <% if current_user.car_model.blank? %><%= %> <% else %> <%= current_user.car_model %> <% end %>
             </div>
         </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <p class="main-color">Social media</p>
                 </div>
-                <div class="panel-body"><a href="http://Facebook.com">
-                    Facebook</a>
+                <div class="panel-body">
+                <% if current_user.facebook.blank? %><%= %> <% else %> <%= link_to("Facebook", current_user.facebook) %> <% end %>
+                <% if current_user.twitter.blank? %><%= %> <% else %> <%= link_to("Twitter", current_user.twitter) %> <% end %>
+                <% if current_user.googleplus.blank? %><%= %> <% else %> <%= link_to("Google Plus", current_user.googleplus) %> <% end %>
                 </div>
             </div>
           
@@ -52,6 +55,16 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-sm-6">
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow= <%= current_user.percentage %> aria-valuemin="0" aria-valuemax="100" style="width: <%= current_user.percentage %>%;">
+                <%= current_user.percentage %>%
+              </div>
+            </div>
+        </div>
+
+
     </div>
     <br></br>
     </div>
