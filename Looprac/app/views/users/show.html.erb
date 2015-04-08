@@ -15,7 +15,7 @@
                 <% unless current_user == @user %>
                     <% if user_signed_in? and current_user.admin? %>
                         <% unless @user.banned? %>
-                            <li class="list-group-item text-center"><%= link_to "Ban #{@user.username }", ban_user_path(@user),
+                            <li class="list-group-item text-muted main-color"><%= link_to "Ban #{@user.username }", ban_user_path(@user),
                                 data: { confirm: 'Are you sure?' } %></li>
                         <% end %>
                     <% end %>
