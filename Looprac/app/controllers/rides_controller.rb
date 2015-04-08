@@ -1,14 +1,24 @@
 class RidesController < ApplicationController
+	
+	def index
+		@rides = Ride.search(params[:searchStart],params[:searchEnd])
+	end
 
 	def show
 		@rides = Ride.all
-	end
+	end	
 
-	def index
+	def offer
 		@landmarks = Landmark.all
 		@ids = get_ids
 		@ride = Ride.new
-	end
+	end	
+
+	def userView
+		@rides=Ride.where(:user_id => current_user.id).reverse
+		@landmarks=Landmark.all
+	end	
+
 
 	def edit
 		@ride = Ride.find(params[:id])
@@ -21,10 +31,10 @@ class RidesController < ApplicationController
   		@ride.user_id = current_user.id
 		if @ride.save
 			flash[:notice] = 'Ride offered Successfuly!'
-    		redirect_to	'/rides'
+    		redirect_to	'/rides/offer'
 		else
     		flash[:alert] = 'Could not offer this ride!'
-    		redirect_to	'/rides'
+    		redirect_to	'/rides/offer'
   		end
 	end
 

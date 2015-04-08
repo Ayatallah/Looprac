@@ -1,0 +1,101 @@
+<body class="landing">
+    <div class="container">
+        <br></br>
+        <div class="row">
+        <div class="col-sm-3">
+            <!--left col-->
+            <ul class="list-group">
+
+                <li class="list-group-item text-muted main-color" contenteditable="false">Personal Info</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Userame</strong></span><%= @user.username %></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span><%= @user.created_at.strftime("%d.%m.%Y") %></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Last seen</strong></span><%= @user.last_sign_in_at.strftime("%d.%m.%Y") %></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Rank: </strong></span><%= @user.sign_in_count %></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Gender:</strong></span><% if @user.gender == 1 %> <%= "Female" %> <% else %> <%= "Male" %> <% end %></li>
+                <% unless current_user == @user %>
+                    <% if user_signed_in? and current_user.admin? %>
+                        <% unless @user.banned? %>
+                            <li class="list-group-item text-muted main-color"><%= link_to "Ban #{@user.username }", ban_user_path(@user),
+                                data: { confirm: 'Are you sure?' } %></li>
+                        <% end %>
+                    <% end %>
+                <% end %> 
+            </ul>
+                <div class="panel panel-default">
+                 <div class="panel-heading">
+                    <p class="main-color">About my car</p>
+                </div>
+                <div class="panel-body text-right">
+                <span class="pull-left"><strong class="">Car Model: </strong></span> <% if @user.car_model.blank? %><%= %> <% else %> <%= @user.car_model %> <% end %>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <p class="main-color">Social media</p>
+                    </div>
+                    <div class="panel-body">
+                    <% if @user.facebook.blank? %><%= %> <% else %> <%= link_to("Facebook", @user.facebook) %> <% end %>
+                    <% if @user.twitter.blank? %><%= %> <% else %> <%= link_to("Twitter", @user.twitter) %> <% end %>
+                    <% if @user.googleplus.blank? %><%= %> <% else %> <%= link_to("Google Plus", @user.googleplus) %> <% end %>
+
+                    </div>
+                </div>
+          
+            <ul class="list-group">
+                <li class="list-group-item text-muted main-color">Activity</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Rides offered</strong></span> 15</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Rides joined</strong></span> 13</li>
+                
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Score</strong></span> <%= @user.points %> </li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong> Score based on</strong></span> <%= "#{@useratings.count} Reviews" %></li>
+                <% if @user.level.blank? %>
+                    <li class="list-group-item text-right"><span class="pull-left"><strong>Title</strong></span>  <%= "LooPrac Rookie" %></li>
+                <% else %>
+                    <li class="list-group-item text-right"><span class="pull-left"><strong>Title</strong></span>  <%= @user.level %></li>
+                <% end %>
+
+                <% if @userating.blank? %>
+                    <% unless @user == current_user %>
+                        <li class="list-group-item text-right"><span class="pull-left"><strong><%= "Had ride with #{@user.username}?"%> </strong></span>  <%= link_to "Rate #{@user.username}!", new_user_userating_path(@user) %></li>
+                    <% end %>
+                <% else %>
+                    <% @userating.each do |userating| %>
+                    <li class="list-group-item text-right"><span class="pull-left"><strong><%= "Your Rating"%></strong></span> <div class="star-rating" data-score= <%= userating.rating %>></div> </li>
+                    <% if userating.review.blank? %>
+                        <li class="list-group-item text-right"><span class="pull-left"><strong>Your Review</strong></span>  No Review.</li>
+                    <% else %>
+                        <li class="list-group-item text-right"><span class="pull-left"><strong>Your Review</strong></span>  <%= userating.review %></li>
+                    <% end %>
+                    <% end %>
+                <% end %>
+                <% if current_user.admin? %>
+                    <li class="list-group-item text-muted main-color"><%= link_to "View #{@user.username} Reviews" , ratings_user_path(@user) %> </li>
+                <% end %>
+            </ul>
+        </div>
+        <div class="col-sm-9">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <p class="main-color"><%= @user.first_name %>'s Bio</p>
+                </div>
+                <div class="panel-body"> A description about me.
+
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+    <br></br>
+    </div>
+</body>
+
+        <script>
+                $('.star-rating').raty({
+                    path: '/assets/',
+                    readOnly: true,
+                    score: function() {
+                        return $(this).attr('data-score');
+                }
+            });
+        </script>

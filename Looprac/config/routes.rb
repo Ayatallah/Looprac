@@ -1,13 +1,25 @@
 Rails.application.routes.draw do
-  devise_for :users
+
+  devise_for :users,
+             :controllers => { :sessions => "sessions"}
+  
+  get "rides/offer"
+  get "rides/userView"
   resources :rides
+  resources :reports
   resources :posts do
     member do
       put "like" => "posts#upvote"
        put "unlike" => "posts#downvote"
     end
   end
-
+  resources :messages
+ resources :conversations do
+   member do
+    post :reply
+    post :mark_as_read
+   end
+ end
   resources :posts do
     resources :comments
   end
@@ -21,11 +33,29 @@ resources :users do
   resources :posts
 end
 
+resources :users do
+  resources :useratings, except: [:show, :edit]
+end
+
+resources :users do
+  member do
+    get :ratings, :ban
+  end
+end
+resources :rides
+resources :requests
+
+
+resources :landmarks do
+  resources :lmratings, except: [:edit]
+end
   root 'welcome#index'
 
   get "welcome/Registration"
   get "welcome/Profile"
   get "welcome/results"
+
+  get "welcome/user_settings"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
