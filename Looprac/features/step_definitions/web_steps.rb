@@ -41,6 +41,13 @@ Ride.create(user_id: 1, source_id: 1, destination_id: 2, seatNum: 4, description
 Ride.create(user_id: 1, source_id: 1, destination_id: 3, seatNum: 4, description: "Hi")
 Ride.create(user_id: 1, source_id: 2, destination_id: 3, seatNum: 4, description: "Hi")
 end
+
+Before do
+  User.create!(:username => 'user', :password => 'password', :email => 'email@student.guc.edu.eg')
+User.create!(:username => 'user2', :password => 'password', :email => 'email2@student.guc.edu.eg')
+end
+World(WithinHelpers)
+
 # Single-line step scoper
 When /^(.*) within (.*[^:])$/ do |step, parent|
   with_scope(parent) { When step }

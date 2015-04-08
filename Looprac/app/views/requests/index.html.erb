@@ -1,0 +1,50 @@
+<ul class="nav nav-tabs">
+  <li role="presentation" > <li><%= link_to 'Rides', rides_userView_path %></li> </li>
+  <li role="presentation" class="active"><a href="#">Requests</a></li>
+</ul>
+<br>
+
+<div class="list-group">
+  <% @i=0 %>
+  <% @k=0 %>
+  <% @requests.each do |r| %>
+
+    <div class="list-group-item">
+      <h4 class="list-group-item-heading"><%= @requesters.fetch(@i).username%> requested to take your ride</h4>
+      <p class="list-group-item-text">This user requested to take your ride from <%= @landmarks.fetch(@k).name %>
+      to <%= @landmarks.fetch(@k+1).name %> </p>
+      <br>
+      <% if r.response == true %>
+        <p style="background-color: #0cace7; font-size: 90%"> Ride Request Accepted </p>
+      <% elsif r.response == false %>
+        <p style="background-color: LightGray; font-size: 90%"> Ride Request Rejected </p>
+      <% else %>
+        <button type="button" class="btn btn-default" ><%= link_to 'Accept', edit_request_path(r, :flag => true) %></button>
+        <button type="button" class="btn btn-default" ><%= link_to 'Reject', edit_request_path(r, :flag => false) %></button>
+      <% end %>
+    </div>  
+      <!-- Accept/reject button -->
+      <!--
+      <p>
+        <div class="dropdown">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            Accept <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Accept</a></li>
+            <li><a href="#">reject</a></li>
+          </ul>
+        </div> 
+  
+      </p>
+    </a>
+    -->
+  
+    <% @i=@i+1 %>
+    <% @k=@k+2 %>  
+    <br>
+    <br>
+  <% end %>  
+</div>  
+   
+ 

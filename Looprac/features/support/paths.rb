@@ -15,9 +15,16 @@ module NavigationHelpers
 
     when /^the home\s?page$/
       '/'
-     when /the welcome page/
-      root_path
+
     # Add more mappings here.
+  when /the welcome page/
+    root_path
+
+  when /the messages page/
+    conversations_path
+ 
+  when /the edit registration page/
+    edit_user_registration_path
     # Here is an example that pulls values out of the Regexp:
     #
     #   when /^(.*)'s profile page$/i
