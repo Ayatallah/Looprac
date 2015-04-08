@@ -1,0 +1,36 @@
+<div class="well">
+<%= form_for ([@landmark, @lmrating]) do |f| %>
+
+   <% if @lmrating.errors.any? %>
+     <div id="error_explanataion">
+     	<h2>
+     		<%= pluralize(@lmrating.errors.count, "errors") %> prohibited this lmrating from being saved:
+     	</h2>
+     	<ul>
+     		<% @lmrating.errors.full_messages.each do |msg| %>
+     		  <li><%= msg %></li>
+     		<% end %>
+     	</ul>
+     </div>
+     <% end %>
+
+<div class="form-group">
+     <p>
+     	 <div id="star-rating"></div>
+     </p>
+
+     <p>
+
+    
+     <p>
+     	<%= f.submit %>
+     </p>
+
+     <% end %>
+
+     <script>
+          $('#star-rating').raty({
+           path: '/assets/',
+          scoreName: 'lmrating[rating]'
+     });
+     </script>

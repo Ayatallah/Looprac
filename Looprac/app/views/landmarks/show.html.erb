@@ -1,0 +1,38 @@
+ <div class="container">
+     <div class="col-lg-8">
+     <h1>
+		<%= @landmark.name %>
+	 </h1>
+
+<div class="star-rating" data-score= <%= @avg_lmrating %>> </div>
+		 <%= "#{lmratings.length} ratings" %> 
+
+		
+         
+      	<% if @lmratings.blank?  %>
+      		<h2> No ratings yet </h2>
+      		<%= link_to 'Add rating', new_landmark_lmrating_path(@landmark) %>
+      	<% else %>
+            <% if @lmrating.blank?  %>
+            	<%= link_to 'Add rating', new_landmark_lmrating_path(@landmark) %>
+            <% else %>
+      			<% @lmrating.each do |lmrating| %>
+            	<h2> Your Rating </h2>
+      			<div class="star-rating" data-score= <%= lmrating.rating %> ></div>
+            	<% end %>
+      		<% end %>	
+        <% end %>
+
+		<button type="button" class="btn btn-default"><%= link_to 'Back', landmarks_path %></button>
+</div>
+</div>
+
+		<script>
+            	$('.star-rating').raty({
+      				path: '/assets/',
+      				readOnly: true,
+      				score: function() {
+            			return $(this).attr('data-score');
+   			 	}
+  			});
+		</script>

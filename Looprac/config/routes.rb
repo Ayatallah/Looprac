@@ -46,6 +46,9 @@ resources :rides
 resources :requests
 
 
+resources :landmarks do
+  resources :lmratings, except: [:edit]
+end
   root 'welcome#index'
 
   get "welcome/Registration"
