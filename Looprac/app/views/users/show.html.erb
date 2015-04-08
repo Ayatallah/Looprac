@@ -43,10 +43,17 @@
                 <% end %>
 
                 <% if @userating.blank? %>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong><%= "Had ride with #{@user.username}?"%> </strong></span>  <%= link_to "Rate #{@user.username}!", new_user_userating_path(@user) %></li>
+                    <% unless @user == current_user %>
+                        <li class="list-group-item text-right"><span class="pull-left"><strong><%= "Had ride with #{@user.username}?"%> </strong></span>  <%= link_to "Rate #{@user.username}!", new_user_userating_path(@user) %></li>
+                    <% end %>
                 <% else %>
                     <% @userating.each do |userating| %>
-                    <li class="list-group-item text-right"><span class="pull-left"><strong><%= "You Rated #{@user.username}"%></strong></span> <%= userating.rating %> </li>
+                    <li class="list-group-item text-right"><span class="pull-left"><strong><%= "Your Rating"%></strong></span> <div class="star-rating" data-score= <%= userating.rating %>></div> </li>
+                    <% if userating.review.blank? %>
+                        <li class="list-group-item text-right"><span class="pull-left"><strong>Your Review</strong></span>  No Review.</li>
+                    <% else %>
+                        <li class="list-group-item text-right"><span class="pull-left"><strong>Your Review</strong></span>  <%= userating.review %></li>
+                    <% end %>
                     <% end %>
                 <% end %>
                 <% if current_user.admin? %>
@@ -64,7 +71,19 @@
                 </div>
             </div>
         </div>
+        
+
     </div>
     <br></br>
     </div>
 </body>
+
+        <script>
+                $('.star-rating').raty({
+                    path: '/assets/',
+                    readOnly: true,
+                    score: function() {
+                        return $(this).attr('data-score');
+                }
+            });
+        </script>

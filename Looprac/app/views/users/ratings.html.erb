@@ -1,20 +1,44 @@
-<div class="container log-in">
 
-	<div class="panel panel-default">
-		<div class="panel-heading">
-	    	<h3 class="main-color center"><%= "#{@user.username}'s Reviews"%> </h3>
-	    </div>
-	    <div class="panel-body center">
-	    	<% @useratings.each do |userating| %>
-			<%= link_to userating.rater.username, userating.rater %>
-			<%= userating.rating %>
-			<% if userating.review.blank? %>
-				<h4 class="main-color center"> No Review </h4>
-			<% else %>
-				<%= userating.review %>
-			<% end %>
-			<br>
-			<% end %>
-	    </div>
-	</div>
-</div>
+<div class="container">
+  <div class="col-md-8">
+    <h1 class="page-header">
+      <% if @user == current_user %>
+      	<%= "My Reviews"%>
+      <% else %>
+      	<%= "#{@user.username}'s Reviews"%>
+      <% end %>
+    </h1>
+     <h1 class="page-header">
+      <small> Total Score: <%= @user.points %> Points</small>
+      <small> Based on: <%= @useratings.count %> Reviews</small>
+    </h1>
+    <% @useratings.each do |userating| %> 
+        <p class="lead">
+        	<div class="star-rating" data-score= <%= userating.rating %>></div>
+      	</p>     
+      	<% if userating.review.blank? %>
+			<p class="lead">
+        		No Review.
+      		</p>
+		<% else %>
+			<p class="lead">
+        		<%= userating.review %>
+      		</p>
+		<% end %> 
+		 <p class="lead">
+        	By <%= link_to userating.rater.username, userating.rater %>
+      	</p>
+	<% end %>
+  </div>
+</div> 	
+
+
+		<script>
+            	$('.star-rating').raty({
+      				path: '/assets/',
+      				readOnly: true,
+      				score: function() {
+            			return $(this).attr('data-score');
+   			 	}
+  			});
+		</script>

@@ -1,4 +1,4 @@
-
+<div class="well">
 <%= form_for ([@user, @userating]) do |f| %>
 
    <% if @userating.errors.any? %>
@@ -14,17 +14,26 @@
      </div>
      <% end %>
 
-
+<div class="form-group">
      <p>
-          <%= f.label :rating %><br>
-          <%= f.text_field :rating %>
+           <div id="star-rating"></div>
      </p>
 
-     <p>
-          <%= f.label :review %><br>
+     <p>    
+          <%= f.label :review %> (optional)<br> 
           <%= f.text_area :review %>
+
+</div>
+
      </p>
-     	<%= f.submit %>
+     	<%= f.submit "Submit Rating", class: "btn btn-primary", type: "submit" %>
      </p>
 
      <% end %>
+
+     <script>
+          $('#star-rating').raty({
+           path: '/assets/',
+          scoreName: 'userating[rating]'
+     });
+     </script>
