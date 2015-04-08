@@ -29,6 +29,19 @@ module WithinHelpers
     locator ? within(*selector_for(locator)) { yield } : yield
   end
 end
+World(WithinHelpers)
+Before do
+  Landmark.create(name: 'Giza', latitude: 100, longitude: 200, description: "First Land")
+#
+
+# Second Batch
+Landmark.create(name: 'City Stars', latitude: 100, longitude: 200, description: "Land")
+Landmark.create(name: 'Liverpool', latitude: 100, longitude: 200, description: "Land")
+Ride.create(user_id: 1, source_id: 1, destination_id: 2, seatNum: 4, description: "Hi")
+Ride.create(user_id: 1, source_id: 1, destination_id: 3, seatNum: 4, description: "Hi")
+Ride.create(user_id: 1, source_id: 2, destination_id: 3, seatNum: 4, description: "Hi")
+end
+
 Before do
   User.create!(:username => 'user', :password => 'password', :email => 'email@student.guc.edu.eg')
 User.create!(:username => 'user2', :password => 'password', :email => 'email2@student.guc.edu.eg')

@@ -25,7 +25,6 @@ module NavigationHelpers
  
   when /the edit registration page/
     edit_user_registration_path
-
     # Here is an example that pulls values out of the Regexp:
     #
     #   when /^(.*)'s profile page$/i
