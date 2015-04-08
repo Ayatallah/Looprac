@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 	end
 
 	def index
-		@users = User.all
+		@users = User.where("username LIKE ?", "%#{params[:searchUsers]}%")
 	end
 	
 	def ban
