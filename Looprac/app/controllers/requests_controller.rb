@@ -23,7 +23,11 @@ class RequestsController < ApplicationController
 		@offerer_id=@ride.user_id
 		@requester_id=params[:requester_id]
 		@request = Request.new(:offerer_id => @offerer_id, :ride_id => @ride_id, :requester_id => @requester_id)
-		@request.save
+		if @request.save
+			flash[:notice] = 'Ride requested Successfuly!'
+		else 
+			flash[:alert] = 'Ride request was not successfull!'	
+		end	
 		redirect_to rides_path
 
 	end
