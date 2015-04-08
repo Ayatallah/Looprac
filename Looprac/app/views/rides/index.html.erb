@@ -1,22 +1,21 @@
-<<<<<<< HEAD
 <br>
 <div class="list-group">
   <% @rides.each do |r| %>
 
-    <div class="list-group-item">
-    <h4 class="list-group-item-heading"><%= @users.find(r.user_id).username %> offered a ride from <%= @landmarks.find(r.source_id).name %> to <%= @landmarks.find(r.destination_id).name %> </h4>
-    <p class="list-group-item-text"> Number of seats: <%= r.seatNum %> </p>
-    <p class="list-group-item-text"> Description: <%= r.description %> </p>
-    <% if not current_user.id == r.user_id  && @ride_req_array.fetch(r.id).include?(current_user.id) %>
-      <br>
-      <% if @ride_req_array.fetch(r.id).include?(current_user.id) %>
-         <p style="background-color: #0cace7; font-size: 90%"> Ride Request sent </p>
-      <% else %>
-        <button type="button" class="btn btn-default" ><%= link_to 'Send Request', requests_path(:ride_id => r.id, :requester_id => current_user.id), :method => :post %></button>
-      <% end %>    
-    <% end %>
-  </div>
-  <br>  
+    <div class="list-group-item clearfix">
+      <h4 class="list-group-item-heading"><%= @users.find(r.user_id).username %> offered a ride from <%= @landmarks.find(r.source_id).name %> to <%= @landmarks.find(r.destination_id).name %> </h4>
+      <p class="list-group-item-text"> Number of seats: <%= r.seatNum %> </p>
+      <p class="list-group-item-text"> Description: <%= r.description %> </p>
+      <% if not current_user.id == r.user_id  %>
+        <br>
+        <% if @ride_req_array.fetch(r.id).include?(current_user.id) %>
+           <p style="background-color: #0cace7; font-size: 90%"> Ride Request sent </p>
+        <% else %>
+          <button type="button" class="btn btn-default" ><%= link_to 'Send Request', requests_path(:ride_id => r.id, :requester_id => current_user.id), :method => :post %></button>
+        <% end %>    
+      <% end %>
+    </div>
+    <br>  
   <% end %>
   
 </div>
