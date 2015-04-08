@@ -33,8 +33,12 @@ resources :users do
 end
 
 resources :users do
+  resources :useratings, except: [:show, :edit]
+end
+
+resources :users do
   member do
-    get :ban
+    get :ratings, :ban
   end
 end
 

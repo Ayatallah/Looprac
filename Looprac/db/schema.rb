@@ -104,14 +104,6 @@ ActiveRecord::Schema.define(version: 20150408094823) do
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
-  create_table "reports", force: :cascade do |t|
-    t.string   "reporter"
-    t.string   "reported"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "reason"
-  end
-
   create_table "requests", force: :cascade do |t|
     t.integer "offerer_id"
     t.integer "ride_id"
@@ -128,12 +120,6 @@ ActiveRecord::Schema.define(version: 20150408094823) do
     t.string  "description"
   end
 
-  create_table "todos", force: :cascade do |t|
-    t.string   "title"
-    t.text     "notes"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "useratings", force: :cascade do |t|
     t.integer  "rating"
@@ -143,6 +129,8 @@ ActiveRecord::Schema.define(version: 20150408094823) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "useratings", ["rater_id", "rated_id"], name: "index_useratings_on_rater_id_and_rated_id", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "username"

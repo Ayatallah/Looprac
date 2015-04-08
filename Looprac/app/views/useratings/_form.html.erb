@@ -1,0 +1,39 @@
+<div class="well">
+<%= form_for ([@user, @userating]) do |f| %>
+
+   <% if @userating.errors.any? %>
+     <div id="error_explanataion">
+     	<h2>
+     		<%= pluralize(@userating.errors.count, "errors") %> prohibited this postrating from being saved:
+     	</h2>
+     	<ul>
+     		<% @userating.errors.full_messages.each do |msg| %>
+     		  <li><%= msg %></li>
+     		<% end %>
+     	</ul>
+     </div>
+     <% end %>
+
+<div class="form-group">
+     <p>
+           <div id="star-rating"></div>
+     </p>
+
+     <p>    
+          <%= f.label :review %> (optional)<br> 
+          <%= f.text_area :review %>
+
+</div>
+
+     </p>
+     	<%= f.submit "Submit Rating", class: "btn btn-primary", type: "submit" %>
+     </p>
+
+     <% end %>
+
+     <script>
+          $('#star-rating').raty({
+           path: '/assets/',
+          scoreName: 'userating[rating]'
+     });
+     </script>

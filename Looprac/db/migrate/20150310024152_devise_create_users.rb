@@ -8,7 +8,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.boolean :banned, default: false
      
       t.integer :points, default: 0
-      t.string :level
+      t.string :level, default: "LooPrac Rookie"
 
       ## Database authenticatable
       t.string :email,              null: false, default: ""
