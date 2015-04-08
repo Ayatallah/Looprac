@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150323173623) do
+ActiveRecord::Schema.define(version: 20150408094823) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "body"
@@ -23,6 +23,23 @@ ActiveRecord::Schema.define(version: 20150323173623) do
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+
+  create_table "landmarks", force: :cascade do |t|
+    t.string   "name"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "lmratings", force: :cascade do |t|
+    t.integer  "rating"
+    t.integer  "user_id"
+    t.integer  "landmark_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "mailboxer_conversation_opt_outs", force: :cascade do |t|
     t.integer "unsubscriber_id"
@@ -87,6 +104,30 @@ ActiveRecord::Schema.define(version: 20150323173623) do
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
+  create_table "reports", force: :cascade do |t|
+    t.string   "reporter"
+    t.string   "reported"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "reason"
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.integer "offerer_id"
+    t.integer "ride_id"
+    t.integer "requester_id"
+    t.boolean "response"
+    t.text    "message"
+  end
+
+  create_table "rides", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "source_id"
+    t.integer "destination_id"
+    t.integer "seatNum"
+    t.string  "description"
+  end
+
   create_table "todos", force: :cascade do |t|
     t.string   "title"
     t.text     "notes"
@@ -94,7 +135,22 @@ ActiveRecord::Schema.define(version: 20150323173623) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "useratings", force: :cascade do |t|
+    t.integer  "rating"
+    t.string   "review"
+    t.integer  "rated_id"
+    t.integer  "rater_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
+    t.string   "username"
+    t.boolean  "admin",                  default: false
+    t.integer  "gender"
+    t.boolean  "banned",                 default: false
+    t.integer  "points",                 default: 0
+    t.string   "level"
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
@@ -107,8 +163,16 @@ ActiveRecord::Schema.define(version: 20150323173623) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "username"
-    t.boolean  "admin",                  default: false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "age",                    default: 0
+    t.integer  "rank",                   default: 1
+    t.string   "car_model",              default: ""
+    t.boolean  "air_conditioned",        default: false
+    t.string   "facebook",               default: ""
+    t.string   "twitter",                default: ""
+    t.string   "googleplus",             default: ""
+    t.integer  "percentage",             default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
