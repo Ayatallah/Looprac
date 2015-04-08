@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Report a User</title>
+	<script type="text/javascript">
+		$(function(){
+
+			$(".dmReport li a").click(function() {
+
+				$(".reported:first-child").text($(this).text());
+				$(".reported-toggle:first-child").val($(this).text());
+				$('.form-control-report').val($(this).text());
+
+			});
+
+		});
+
+		$(function(){
+
+			$(".dmReason li a").click(function() {
+
+				$(".reason:first-child").text($(this).text());
+				$(".reason-toggle:first-child").val($(this).text());
+				$('.form-control-reason').val($(this).text());
+
+			});
+
+		});
+	</script>
+</head>
+<body class="landing">
+	<div class="container">
+		<div class="jumbotron">
+			<div class="row">
+				<div class="col-sm-12">
+					<h2>Reporting a user</h2>
+				</div>
+			</div>
+			<br>
+			
+			<%= render 'form' %>
+
+		</div>
+	</div>
+</body>
+</html>

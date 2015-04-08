@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
    validates :first_name, presence: true
    validates :last_name, presence: true
    validates :gender, presence: true
+   validates :username, presence: true
+   validates_uniqueness_of :username
    
    has_many :comments
    has_many :posts

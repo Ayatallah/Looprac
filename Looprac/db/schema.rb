@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150403131850) do
+ActiveRecord::Schema.define(version: 20150407110732) do
+
 
   create_table "comments", force: :cascade do |t|
     t.text     "body"
@@ -31,6 +32,7 @@ ActiveRecord::Schema.define(version: 20150403131850) do
     t.datetime "updated_at",  null: false
     t.float    "longitude"
     t.float    "latitude"
+
   end
 
   create_table "lmratings", force: :cascade do |t|
@@ -59,12 +61,11 @@ ActiveRecord::Schema.define(version: 20150403131850) do
     t.text    "message"
   end
 
-# Could not dump table "rides" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
-
-  create_table "todos", force: :cascade do |t|
-    t.string   "title"
-    t.text     "notes"
+  create_table "useratings", force: :cascade do |t|
+    t.integer  "rating"
+    t.string   "review"
+    t.integer  "rated_id"
+    t.integer  "rater_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -86,15 +87,18 @@ ActiveRecord::Schema.define(version: 20150403131850) do
     t.boolean  "admin",                  default: false
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "age"
+    t.integer  "age",                    default: 0
     t.integer  "rank",                   default: 1
-    t.string   "car_model"
+    t.string   "car_model",              default: ""
     t.boolean  "air_conditioned",        default: false
-    t.string   "facebook"
-    t.string   "twitter"
-    t.string   "googleplus"
+    t.string   "facebook",               default: ""
+    t.string   "twitter",                default: ""
+    t.string   "googleplus",             default: ""
     t.integer  "gender"
+    t.integer  "percentage",             default: 0
     t.boolean  "banned"
+    t.integer  "points"
+    t.string   "level"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
