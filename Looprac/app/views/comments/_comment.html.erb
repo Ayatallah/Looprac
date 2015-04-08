@@ -1,13 +1,13 @@
 <% @post.comments.each do |comment| %>
 	<div class="media">
 		<div class="media-body">
-		<h4 class="media-heading">
-		<% if comment.user %>
-			<%= comment.user.username %> 
-				<small><%= comment.created_at.strftime("%-d %B, %Y at %H:%M") %></small>
-  		</h4>
-  		<%= comment.body %>
-  	</div>
+			<h4 class="media-heading">
+			<% if comment.user %>
+				<%= comment.user.username %> 
+					<small><%= comment.created_at.strftime("%-d %B, %Y at %H:%M") %></small>
+	  		</h4>
+	  		<%= comment.body %>
+  		</div>
   	</div>
     <p>
 		<% if comment.user_id == current_user.id || user_signed_in? && current_user.admin? %>
