@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   devise_for :users,
              :controllers => { :sessions => "sessions"}
   
-
+  get "rides/offer"
+  get "rides/userView"
   resources :rides
   resources :reports
   resources :posts do
@@ -41,6 +42,9 @@ resources :users do
     get :ratings, :ban
   end
 end
+resources :rides
+resources :requests
+
 
 resources :landmarks do
   resources :lmratings, except: [:edit]
@@ -50,6 +54,7 @@ end
   get "welcome/Registration"
   get "welcome/Profile"
   get "welcome/results"
+
   get "welcome/user_settings"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
