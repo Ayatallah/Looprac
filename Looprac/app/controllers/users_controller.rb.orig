@@ -1,14 +1,18 @@
 class UsersController < ApplicationController
+<<<<<<< HEAD
+=======
+	
+>>>>>>> master
 
 	def show
 		@user = User.find(params[:id])
-		@useratings= Userating.where(rated_id: @user.id)
-		@userating= Userating.where(rated_id: @user.id, rater_id: current_user.id)
 	end
 
 	def index
 		@users = User.all
 	end
+<<<<<<< HEAD
+=======
 	
 	def ban
     	@user = User.find(params[:id])
@@ -18,11 +22,6 @@ class UsersController < ApplicationController
   	end
 
 
-
-	def ratings
-		@user = User.find(params[:id])
-		@useratings= Userating.where(rated_id: @user.id)
-	end
-
+>>>>>>> master
 
 end
