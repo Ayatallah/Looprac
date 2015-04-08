@@ -1,7 +1,7 @@
 class RidesController < ApplicationController
 
 	def index
-		@rides = Ride.all
+		@rides = Ride.search(params[:searchStart],params[:searchEnd])
 	end
 
 	def show
