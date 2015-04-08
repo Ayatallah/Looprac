@@ -1,12 +1,19 @@
 class RidesController < ApplicationController
 
+	def show
+		@rides = Ride.all
+	end
+
 	def index
 		@landmarks = Landmark.all
 		@ids = get_ids
 		@ride = Ride.new
 	end
 
-	def show
+	def edit
+		@ride = Ride.find(params[:id])
+		@landmarks = Landmark.all
+		@ids = get_ids
 	end
 
 	def create
@@ -21,14 +28,10 @@ class RidesController < ApplicationController
   		end
 	end
 
-	def edit
-		@ride = Ride.find(params[:id])
-	end
-
 	def update
   		@ride = Ride.find(params[:id])
  
-  		if @ride.update(post_params)
+  		if @ride.update(ride_params)
     		redirect_to @ride
   		else
     		render 'edit'
@@ -38,7 +41,7 @@ class RidesController < ApplicationController
 	def destroy
   		@ride = Ride.find(params[:id])
   		@ride.destroy
-  		redirect_to '/welcome'
+  		redirect_to '/rides/show'
 	end
 
 	def get_ids
