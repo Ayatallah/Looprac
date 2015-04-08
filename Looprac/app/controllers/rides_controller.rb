@@ -1,20 +1,43 @@
 class RidesController < ApplicationController
-
+	
 	def index
+		@rides=Ride.all
+		@rides_ids=Ride.pluck(:id)
+		@landmarks=Landmark.all 
+		@users=User.all
+		@ride_req_array=Array.new
+		@ride_req_array.push([])
+		@rides_ids.each do |r|
+			@temp=Request.where(:ride_id => r).pluck(:requester_id)
+			@ride_req_array.push(@temp)
+		end	
+		@rides=@rides.reverse
+	end
+
+	def show
+	end	
+
+	def offer
 		@landmarks = Landmark.all
 		@ids = get_ids
 		@ride = Ride.new
-	end
+	end	
+
+	def userView
+		@rides=Ride.where(:user_id => current_user.id).reverse
+		@landmarks=Landmark.all
+	end	
+
 
 	def create
   		@ride = Ride.new(ride_params)
   		@ride.user_id = current_user.id
 		if @ride.save
 			flash[:notice] = 'Ride offered Successfuly!'
-    		redirect_to	'/rides'
+    		redirect_to	'/rides/offer'
 		else
     		flash[:alert] = 'Could not offer this ride!'
-    		redirect_to	'/rides'
+    		redirect_to	'/rides/offer'
   		end
 	end
 

@@ -121,6 +121,9 @@ ActiveRecord::Schema.define(version: 20150408094823) do
   end
 
 
+# Could not dump table "rides" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
+
   create_table "useratings", force: :cascade do |t|
     t.integer  "rating"
     t.string   "review"
@@ -157,10 +160,12 @@ ActiveRecord::Schema.define(version: 20150408094823) do
     t.integer  "rank",                   default: 1
     t.string   "car_model",              default: ""
     t.boolean  "air_conditioned",        default: false
+
     t.string   "facebook",               default: ""
     t.string   "twitter",                default: ""
     t.string   "googleplus",             default: ""
     t.integer  "percentage",             default: 0
+
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -1,58 +1,46 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Offer a Ride</title>
-	<script type="text/javascript">
-		$(function(){
-			$(".dmSource li a").click(function() {
-				var name = $(this).text();
-				var landmarks = <%= raw @ids %>;
-				var id;
-				$(".source:first-child").text(name);
-				$(".source-toggle:first-child").val(name);
-				for (var i = 0; i < landmarks.length; i++) {
-					if(name == landmarks[i]){
-						id = landmarks[i+1];
-						break;
-					}
-				};
-				$('.form-control-source').val(id);
-				console.log($('.form-control-source').val());
-			});
-		});
-		$(function(){
-			$(".dmDest li a").click(function() {
-				var name = $(this).text();
-				var landmarks = <%= raw @ids %>;
-				var id;
-				$(".dest:first-child").text(name);
-				$(".dest-toggle:first-child").val(name);
-				for (var i = 0; i < landmarks.length; i++) {
-					if(name == landmarks[i]){
-						id = landmarks[i+1];
-						break;
-					}
-				};
-				$('.form-control-dest').val(id);
+<br>
+<div class="list-group">
+  <% @rides.each do |r| %>
 
-				console.log($('.form-control-dest').val());
-			});
-		});
-	</script>
+    <div class="list-group-item clearfix">
+      <h4 class="list-group-item-heading"><%= @users.find(r.user_id).username %> offered a ride from <%= @landmarks.find(r.source_id).name %> to <%= @landmarks.find(r.destination_id).name %> </h4>
+      <p class="list-group-item-text"> Number of seats: <%= r.seatNum %> </p>
+      <p class="list-group-item-text"> Description: <%= r.description %> </p>
+      <% if not current_user.id == r.user_id  %>
+        <br>
+        <% if @ride_req_array.fetch(r.id).include?(current_user.id) %>
+           <p style="background-color: #0cace7; font-size: 90%"> Ride Request sent </p>
+        <% else %>
+          <button type="button" class="btn btn-default" ><%= link_to 'Send Request', requests_path(:ride_id => r.id, :requester_id => current_user.id), :method => :post %></button>
+        <% end %>    
+      <% end %>
+    </div>
+    <br>  
+  <% end %>
+  
+</div>
 
-</head>
-<body class="landing">
-	<div class="container">
-		<div class="jumbotron">
-			<div class="row">
-				<div class="col-sm-12">
-					<h1>Offer a Ride!</h1>
-				</div>
-			</div>
-			<br>
+<!-- <div class="panel panel-default">
+  Default panel contents 
+  <div class="panel-heading">My Offered Rides</div>
 
-			<%= render 'form' %>
-		</div>
-	</div>
-</body>
-</html>
+   Table 
+  <table class="table">
+  	<tr style="text-align: center; background-color: LightGray ">
+    	<td>From</td>
+    	<td>To</td>
+    	<td>No. of seats</td>
+    	<td>Extra info</td>
+    </tr>
+    <% @rides.each do |r| %>
+    	<tr style="text-align: center;">
+    		<td><%= @landmarks.find(r.source_id).name %></td>
+    		<td><%= @landmarks.find(r.destination_id).name %></td>
+    		<td><%= r.seatNum %></td>
+    		<td><%= r.description %></td>
+    	</tr>
+    <% end %>
+  </table>
+</div> 
+-->
+
