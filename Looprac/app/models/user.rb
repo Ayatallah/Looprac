@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
    validates :first_name, presence: true
    validates :last_name, presence: true
    validates :gender, presence: true
+   validates :username, presence: true
+   validates_uniqueness_of :username
    
    has_many :comments
    has_many :posts
@@ -16,4 +18,13 @@ class User < ActiveRecord::Base
    has_many :useratings, foreign_key: "rated_id", dependent: :destroy
    has_many :useratings, foreign_key: "rater_id", dependent: :destroy
   acts_as_voter
+  acts_as_messageable
+
+  def mailboxer_email(object)
+  email
+end
+
+ def name(object)
+ 	username
+ end
 end
