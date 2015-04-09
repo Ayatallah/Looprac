@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150331114146) do
+ActiveRecord::Schema.define(version: 20150408094823) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "body"
@@ -91,14 +91,15 @@ ActiveRecord::Schema.define(version: 20150331114146) do
     t.boolean  "admin",                  default: false
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "age"
+    t.integer  "age",                    default: 0
     t.integer  "rank",                   default: 1
-    t.string   "car_model"
+    t.string   "car_model",              default: ""
     t.boolean  "air_conditioned",        default: false
-    t.string   "facebook"
-    t.string   "twitter"
-    t.string   "googleplus"
+    t.string   "facebook",               default: ""
+    t.string   "twitter",                default: ""
+    t.string   "googleplus",             default: ""
     t.integer  "gender"
+    t.integer  "percentage",             default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -1,3 +1,4 @@
+<% calculate_completition(current_user) %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,11 +58,12 @@
 
         <div class="col-sm-6">
             <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                60%
+              <div class="progress-bar" role="progressbar" aria-valuenow= <%= current_user.percentage %> aria-valuemin="0" aria-valuemax="100" style="width: <%= current_user.percentage %>%;">
+                <%= current_user.percentage %>%
               </div>
             </div>
         </div>
+
 
     </div>
     <br></br>
