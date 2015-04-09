@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150408094823) do
+ActiveRecord::Schema.define(version: 20150407110732) do
+
 
   create_table "comments", force: :cascade do |t|
     t.text     "body"
@@ -31,6 +32,15 @@ ActiveRecord::Schema.define(version: 20150408094823) do
     t.datetime "updated_at",  null: false
     t.float    "longitude"
     t.float    "latitude"
+
+  end
+
+  create_table "lmratings", force: :cascade do |t|
+    t.integer  "rating"
+    t.integer  "user_id"
+    t.integer  "landmark_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "posts", force: :cascade do |t|
@@ -44,32 +54,18 @@ ActiveRecord::Schema.define(version: 20150408094823) do
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
   create_table "requests", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "ride_id"
-    t.boolean  "respond"
-    t.string   "message"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "offerer_id"
+    t.integer "ride_id"
+    t.integer "requester_id"
+    t.boolean "response"
+    t.text    "message"
   end
 
-  add_index "requests", ["ride_id"], name: "index_requests_on_ride_id"
-  add_index "requests", ["user_id"], name: "index_requests_on_user_id"
-
-  create_table "rides", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "landmark_id"
-    t.integer  "seatNum"
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "rides", ["landmark_id"], name: "index_rides_on_landmark_id"
-  add_index "rides", ["user_id"], name: "index_rides_on_user_id"
-
-  create_table "todos", force: :cascade do |t|
-    t.string   "title"
-    t.text     "notes"
+  create_table "useratings", force: :cascade do |t|
+    t.integer  "rating"
+    t.string   "review"
+    t.integer  "rated_id"
+    t.integer  "rater_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -100,6 +96,9 @@ ActiveRecord::Schema.define(version: 20150408094823) do
     t.string   "googleplus",             default: ""
     t.integer  "gender"
     t.integer  "percentage",             default: 0
+    t.boolean  "banned"
+    t.integer  "points"
+    t.string   "level"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -1,0 +1,49 @@
+<div class="row">
+	<div class="placeholder col-sm-12">
+		<h3>Choose the source and destination:</h3>
+
+		<div class="btn-group" role="group">
+			<button class="btn btn-default disabled" type="button">Source</button>
+
+			<div class="btn-group">
+				<button id="drop-togg" class="btn btn-default dropdown-toggle source" data-toggle="dropdown">Select One</span></button> 
+				<ul class="dropdown-menu dmSource" role="menu">
+					<% @landmarks.each do |landmark| %>
+						<li> 
+							<a href="#"><%=landmark.name%></a>
+						</li>
+					<% end %>
+				</ul>
+			</div>
+
+			<button class="btn btn-default disabled" type="button">Destination</button>
+
+			<div class="btn-group">
+				<button id="drop-togg" class="btn btn-default dropdown-toggle dest" data-toggle="dropdown">Select One</span></button> 
+				<ul class="dropdown-menu dmDest" role="menu">
+					<% @landmarks.each do |landmark| %>
+						<li> 
+							<a href="#"><%=landmark.name%></a>
+						</li>
+					<% end %>
+				</ul>
+			</div>
+			<br><br>
+
+			
+			<%= form_for @ride do |f| %>
+			<%= f.hidden_field :source_id, class: "form-control-source"%>
+			<%= f.hidden_field :destination_id, class: "form-control-dest"%>
+			<h3>Number of Seats in this ride:</h3>
+			<%= f.number_field :seatNum, class: "form-control bfh-number", min: 1, max: 5, value: 1%>
+			<h3>Enter a description for this ride (optional):</h3>
+			<%= f.text_area :description, class: "form-control", :size => "65%x4%" %>
+
+			<br>
+			<%= f.submit "Offer this Ride", class: "btn btn-primary", type: "submit" %>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+		

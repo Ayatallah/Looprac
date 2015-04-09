@@ -1,0 +1,2 @@
+module LmratingsHelper
+end
