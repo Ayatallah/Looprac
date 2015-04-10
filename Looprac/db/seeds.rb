@@ -6,7 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-<<<<<<< HEAD
 #Todo.create!(title: 'shopping', notes: 'tomato, tomato, tomato')
 #Todo.create!(title: 'steal the bike')
 #Todo.create!(title: 'Get to Diamond1', notes: 'pick orianna -> win')
@@ -26,7 +25,7 @@ Request.create(offerer_id: 4, ride_id: 15, requester_id: 1)
 #Landmark.create(name: "German University in Cairo", latitude: 5535, longitude: 99745, description: "Hmmmmmm")
 #Ride.create(user_id: 4, source_id: 8, destination_id: 6, seatNum: 1, description: "Just on this monday")
 
-=======
+
 #First Batch
 Landmark.create(name: 'Giza', latitude: 100, longitude: 200, description: "First Land")
 #
@@ -44,4 +43,4 @@ Ride.create(user_id: 1, source_id: 3, destination_id: 1, seatNum: 4, description
 Ride.create(user_id: 1, source_id: 4, destination_id: 5, seatNum: 4, description: "Hi")
 Ride.create(user_id: 1, source_id: 4, destination_id: 3, seatNum: 4, description: "Hi")
 #
->>>>>>> b6a18857a8d8d6859e8efcc43c83c632337096e3
+

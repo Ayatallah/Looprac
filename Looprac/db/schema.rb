@@ -123,11 +123,12 @@ ActiveRecord::Schema.define(version: 20150408094823) do
 # Could not dump table "rides" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass
 
-  create_table "todos", force: :cascade do |t|
-    t.string   "title"
-    t.text     "notes"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "rides", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "source_id"
+    t.integer "destination_id"
+    t.integer "seatNum"
+    t.string  "description"
   end
 
   create_table "useratings", force: :cascade do |t|
@@ -158,8 +159,6 @@ ActiveRecord::Schema.define(version: 20150408094823) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "username"
-    t.boolean  "admin",                  default: false
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "age"
@@ -169,8 +168,6 @@ ActiveRecord::Schema.define(version: 20150408094823) do
     t.string   "facebook"
     t.string   "twitter"
     t.string   "googleplus"
-    t.integer  "gender"
-    t.boolean  "banned"
     t.integer  "percentage",             default: 0
   end
 
