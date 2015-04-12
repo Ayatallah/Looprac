@@ -26,11 +26,11 @@ ActiveRecord::Schema.define(version: 20150408094823) do
 
   create_table "landmarks", force: :cascade do |t|
     t.string   "name"
+    t.float    "latitude"
+    t.float    "longitude"
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.float    "longitude"
-    t.float    "latitude"
   end
 
   create_table "lmratings", force: :cascade do |t|
@@ -120,9 +120,6 @@ ActiveRecord::Schema.define(version: 20150408094823) do
     t.text    "message"
   end
 
-# Could not dump table "rides" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
-
   create_table "rides", force: :cascade do |t|
     t.integer "user_id"
     t.integer "source_id"
@@ -139,6 +136,8 @@ ActiveRecord::Schema.define(version: 20150408094823) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "useratings", ["rater_id", "rated_id"], name: "index_useratings_on_rater_id_and_rated_id", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
@@ -157,17 +156,21 @@ ActiveRecord::Schema.define(version: 20150408094823) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "age"
+    t.integer  "age",                    default: 0
     t.integer  "rank",                   default: 1
-    t.string   "car_model"
+    t.string   "car_model",              default: ""
     t.boolean  "air_conditioned",        default: false
-    t.string   "facebook"
-    t.string   "twitter"
-    t.string   "googleplus"
+    t.string   "facebook",               default: ""
+    t.string   "twitter",                default: ""
+    t.string   "googleplus",             default: ""
     t.integer  "percentage",             default: 0
   end
 
