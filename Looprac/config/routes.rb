@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   
   get "rides/offer"
   get "rides/userView"
+  get "landmarks/suggestions"
   resources :rides
   resources :reports
   resources :posts do
@@ -45,10 +46,17 @@ end
 resources :rides
 resources :requests
 
+resources :landmarks do
+  member do
+    get  :accept, :reject
+  end
+end
 
 resources :landmarks do
   resources :lmratings, except: [:edit]
 end
+
+
   root 'welcome#index'
 
   get "welcome/Registration"

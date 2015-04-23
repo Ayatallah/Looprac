@@ -6,28 +6,38 @@
       <hr>
       <p class="date"><span class="glyphicon glyphicon-time"></span><%= @landmark.created_at.strftime(" %B %d, %Y") %>
       </p>
+      <p>
+        <% if user_signed_in? and current_user.admin? and @landmark.accepted == false %>
+          <button type="button" class="btn btn-default"><%= link_to 'Accept', accept_landmark_path(@landmark) %></button>
+          <button type="button" class="btn btn-warning"><%= link_to 'Reject', reject_landmark_path(@landmark) ,data: { confirm: 'Are you sure?' } %></button> 
+        <% end %>
+      </p>
 
-      <div class="star-rating" data-score= <%= @avg_lmrating %>> </div>
+      <p>
+        <div class="star-rating" data-score= <%= @avg_lmrating %>> </div>
 		    <%= "#{@lmratings.length} ratings" %> 
+      </p>
 
 		
-         
+      <p>  
       	<% if @lmratings.blank?  %>
       		<h2> No ratings yet </h2>
       		<%= link_to 'Add rating', new_landmark_lmrating_path(@landmark) %>
       	<% else %>
-            <% if @lmrating.blank?  %>
-            	<%= link_to 'Add rating', new_landmark_lmrating_path(@landmark) %>
-            <% else %>
-      			  <% @lmrating.each do |lmrating| %>
+          <% if @lmrating.blank?  %>
+            <%= link_to 'Add rating', new_landmark_lmrating_path(@landmark) %>
+          <% else %>
+      			<% @lmrating.each do |lmrating| %>
             	 <h2> Your Rating </h2>
       			   <div class="star-rating" data-score= <%= lmrating.rating %> ></div>
-            	 <% end %>
-      		  <% end %>	
+            <% end %>
+      		<% end %>	
         <% end %>
-    <p>
-		<button type="button" class="btn btn-default"><%= link_to 'Back', landmarks_path %></button>
-    </p>
+      </p>
+      
+      <p>
+		    <button type="button" class="btn btn-default"><%= link_to 'Back', landmarks_path %></button>
+      </p>
 </div>
 </div>
 
