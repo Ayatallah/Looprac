@@ -1,8 +1,8 @@
 class LandmarksController < ApplicationController
-	before_filter :ensure_admin!, except: [:show , :index]
+	before_filter :ensure_admin!, except: [:show , :index , :create,:new]
 
 	def index
-		@landmarks = Landmark.all
+		@landmarks = Landmark.where(accepted: true)
 	end
 
 
@@ -22,17 +22,39 @@ class LandmarksController < ApplicationController
 		@landmark = Landmark.new
     end
 
-
 	def edit
 		@landmark = Landmark.find(params[:id])
+	end
+
+	def suggestions
+		@landmarks = Landmark.where(accepted: false)
+	end
+
+	def accept
+		@landmark = Landmark.find(params[:id])
+		@landmark.update(accepted: true)
+		redirect_to landmarks_suggestions_path
+	end
+
+	def reject
+		@landmark = Landmark.find(params[:id])
+		@landmark.destroy
+		redirect_to landmarks_suggestions_path
 	end
 
 	def create
 		@landmark = Landmark.new(landmark_params)
 		if @landmark.save
-			redirect_to @landmark
+			if current_user.admin?
+				@landmark.update(accepted: true)
+				redirect_to @landmark
+			else
+				@landmark.update(accepted: false)
+				redirect_to landmarks_path
+				flash[:notice] = 'Suggestion Submitted Succesfully, an admin will review it shortly.'
+			end	
 		else
-		render 'new'
+			render 'new'
 		end
 	end
 

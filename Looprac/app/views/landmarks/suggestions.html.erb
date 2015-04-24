@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="col-md-8">
+    <h1 class="page-header">
+      Landmark Suggestions
+       <small>By Looprac</small>
+    </h1>
+
+	<% @landmarks.each do |landmark| %>
+		<h2> <%= link_to landmark.name, landmark %> </h2>
+		<p class="date"><span class="glyphicon glyphicon-time"></span><%= landmark.created_at.strftime(" %B %d, %Y") %></p>
+		<hr>
+	<% end %>
+
+	<p>
+		<button type="button" class="btn btn-default"><%= link_to 'Back', landmarks_path %></button>
+    </p>
+
+</ul>
+</div>
+</div>

@@ -19,6 +19,9 @@
 
 	<% if user_signed_in? and current_user.admin? %>
 		<button type="button" class="btn btn-default"><%= link_to 'New landmark', new_landmark_path %></button>
+		<button type="button" class="btn btn-default"><%= link_to 'View landmark Suggestions', landmarks_suggestions_path %></button>
+	<% else%>
+		<button type="button" class="btn btn-default"><%= link_to 'Suggest New landmark', new_landmark_path %></button>
 	<% end %>
 
 	<p>
