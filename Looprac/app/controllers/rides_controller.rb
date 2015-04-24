@@ -53,7 +53,7 @@ class RidesController < ApplicationController
   		@ride = Ride.find(params[:id])
  
   		if @ride.update(ride_params)
-    		redirect_to @ride
+    		redirect_to '/rides/userView'
   		else
     		render 'edit'
   		end
