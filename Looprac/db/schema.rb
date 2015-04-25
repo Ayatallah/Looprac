@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150424195028) do
+ActiveRecord::Schema.define(version: 20150425095330) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "body"
@@ -122,21 +122,20 @@ ActiveRecord::Schema.define(version: 20150424195028) do
   end
 
   create_table "rides", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "source_id"
-    t.integer "destination_id"
-    t.integer "seatNum"
-    t.string  "description"
-    t.date    "date"
-    t.time    "time"
-    t.boolean "reviewed"
-    t.float   "price"
-    t.integer "gender"
-    t.boolean "ac"
-    t.boolean "food"
-    t.boolean "pets"
-    t.boolean "smoking"
-    t.boolean "music"
+    t.integer  "user_id"
+    t.integer  "source_id"
+    t.integer  "destination_id"
+    t.integer  "seatNum"
+    t.string   "description"
+    t.boolean  "reviewed"
+    t.float    "price"
+    t.integer  "gender"
+    t.boolean  "ac"
+    t.boolean  "food"
+    t.boolean  "pets"
+    t.boolean  "smoking"
+    t.boolean  "music"
+    t.datetime "datetime"
   end
 
   create_table "useratings", force: :cascade do |t|
