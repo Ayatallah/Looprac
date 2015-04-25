@@ -44,7 +44,7 @@ end
 
 Before do
   User.create!(:username => 'user', :password => 'password', :email => 'email@student.guc.edu.eg', :first_name => 'Saeed', :last_name => 'Elhawa', :gender => 1)
-User.create!(:username => 'user2', :password => 'password', :email => 'email2@student.guc.edu.eg' :first_name => 'Le', :last_name => 'Grande', :gender => 1)
+User.create!(:username => 'user2', :password => 'password', :email => 'email2@student.guc.edu.eg', :first_name => 'Le', :last_name => 'Grande', :gender => 1)
 end
 World(WithinHelpers)
 
