@@ -12,6 +12,7 @@
       </p>  
 
        <p class="date"><span class="glyphicon glyphicon-time"></span><%= post.created_at.strftime(" %B %d, %Y") %></p>
+       <p> <%= truncate(post.text, :length => 200, :omission =>"...........") %> </p>
      <hr>
 
      <button type="button" class="btn btn-default"><%= link_to 'Read', post %>
