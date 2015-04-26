@@ -53,7 +53,7 @@ class RidesController < ApplicationController
   		@ride = Ride.find(params[:id])
  
   		if @ride.update(ride_params)
-    		redirect_to @ride
+    		redirect_to '/rides/userView'
   		else
     		render 'edit'
   		end
@@ -62,7 +62,7 @@ class RidesController < ApplicationController
 	def destroy
   		@ride = Ride.find(params[:id])
   		@ride.destroy
-  		redirect_to '/rides/show'
+  		redirect_to '/rides/userView'
 	end
 
 	def get_ids

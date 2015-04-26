@@ -23,7 +23,6 @@
               <% end %>
           <% end %>
         </li>
-        <li> <%= link_to 'Rides', rides_userView_path %> </li>
         <li> <%= link_to  'Offer a Ride!', rides_offer_path %> </li>
         <li> <%= link_to 'Landmarks', landmarks_path %> </li>
 
@@ -33,7 +32,7 @@
 
 
             <li><%= link_to('View My Profile', '/welcome/Profile') %></li>
-            <li><a href="/rides/show">View my Rides</a></li>
+            <li><%= link_to 'Rides', rides_userView_path %>   </li>
             <li><%= link_to 'Users', :controller => "/users" %></li>
             <li><%= link_to('Edit Profile', edit_user_registration_path) %></li>
             <li><%= link_to('Settings', '/welcome/user_settings') %></li>
