@@ -10,7 +10,7 @@
       <% if not current_user.id == r.user_id  %>
         <br>
         <% if @ride_req_array.fetch(r.id).include?(current_user.id) %>
-           <p style="background-color: #0cace7; font-size: 90%"> Ride Request sent </p>
+           <button type="button" class="btn btn-default disabled" >Ride Request sent </button>
         <% else %>
           <button type="button" class="btn btn-default" ><%= link_to 'Send Request', requests_path(:ride_id => r.id, :requester_id => current_user.id), :method => :post %></button>
         <% end %>    
