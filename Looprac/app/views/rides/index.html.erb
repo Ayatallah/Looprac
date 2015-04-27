@@ -10,6 +10,7 @@
       <% if not current_user.id == r.user_id  %>
         <br>
         <% if @ride_req_array.fetch(r.id).include?(current_user.id) %>
+        <!-- @author: Zuishek, Modified the button to be disabled once the request has been sent -->
            <button type="button" class="btn btn-default disabled" >Ride Request sent </button>
         <% else %>
           <button type="button" class="btn btn-default" ><%= link_to 'Send Request', requests_path(:ride_id => r.id, :requester_id => current_user.id), :method => :post %></button>
