@@ -3,7 +3,7 @@
 <div class="panel-heading">
 <div class="panel-body">
 
-<%= form_tag messages_path, :class =>'form-horizontal', method: :post do %>
+<%= form_tag messages_path(:user_id => @receiver), :class =>'form-horizontal', method: :post do %>
 
      
      
