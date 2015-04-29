@@ -5,12 +5,7 @@
 
 <%= form_tag messages_path, :class =>'form-horizontal', method: :post do %>
 
-      <div class="form-group">
-      <%= label_tag 'recipients', 'To:', class: 'col-sm-2 control-label' %>
-      <div class="col-sm-4">
-   <%= text_field_tag 'recipients', nil, class: 'form-control1', required: true %>
-</div>
-   </div>
+     
      
    <div class="form-group">
    	  <%= label_tag 'message[subject]', 'Subject:', class: 'col-sm-2 control-label' %>
