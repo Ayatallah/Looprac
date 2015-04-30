@@ -29,34 +29,42 @@
 				</ul>
 			</div>
 			<br/><br/>
-			<h3>Pick Your Options:</h3>
-			<%= check_box_tag(:ac, 1, current_user.air_conditioned) %> 
-			<%= label_tag(:ac, "Air-Conditioned") %>
-
-			<br/>
-			<%= check_box_tag(:music, 1, current_user.music) %> 
-			<%= label_tag(:music, "Music") %>
-
-			<br/>
-			<%= check_box_tag(:smoking, 1, current_user.smoking) %> 
-			<%= label_tag(:smoking, "Smoking") %>
-
-			<br/>
-			<%= check_box_tag(:food, 1, current_user.food) %> 
-			<%= label_tag(:food, "Food") %>
-
-			<br/>
-			<%= check_box_tag(:pets, 1, current_user.pets) %> 
-			<%= label_tag(:pets, "Pets") %>
+			
+		
 
 			<%= form_for @ride do |f| %>
 			<%= f.hidden_field :source_id, class: "form-control-source"%>
 			<%= f.hidden_field :destination_id, class: "form-control-dest"%>
+
+			<h3>Pick Your Options:</h3>
+
+			<%= f.check_box :ac, :checked => current_user.air_conditioned %> 
+			<%= label_tag(:ac, "Air-Conditioned") %>
+
+
+			<br/>
+			<%= f.check_box :music, :checked => current_user.music %> 
+			<%= label_tag(:music, "Music") %>
+
+			<br/>
+			<%= f.check_box :smoking, :checked => current_user.smoking %> 
+			<%= label_tag(:smoking, "Smoking") %>
+
+			<br/>
+			<%= f.check_box :food, :checked => current_user.food %> 
+			<%= label_tag(:food, "Food") %>
+
+			<br/>
+			<%= f.check_box :pets, :checked => current_user.pets %>  
+			<%= label_tag(:pets, "Pets") %>
+
+
 			<h3>Number of Seats in this ride:</h3>
 			<%= f.number_field :seatNum, class: "form-control bfh-number", min: 1, max: 5, value: 1%>
 			<h3>Enter a description for this ride (optional):</h3>
 			<%= f.text_area :description, class: "form-control", :size => "65%x4%" %>
 
+			
 			<br>
 			<%= f.submit "Offer this Ride", class: "btn btn-primary", type: "submit" %>
 			<% end %>
