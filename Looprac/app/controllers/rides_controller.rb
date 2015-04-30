@@ -2,16 +2,10 @@ class RidesController < ApplicationController
 	
 	def index
 		@rides = Ride.search(params[:searchStart],params[:searchEnd])
-
 		@rides_ids=Ride.pluck(:id)
 		@landmarks=Landmark.all 
 		@users=User.all
-		@ride_req_array=Array.new
-		@ride_req_array.push([])
-		@rides_ids.each do |r|
-			@temp=Request.where(:ride_id => r).pluck(:requester_id)
-			@ride_req_array.push(@temp)
-		end	
+		@user_requests=Request.where(:requester_id => current_user.id).pluck(:ride_id)
 		@rides=@rides.reverse
 	end
 
