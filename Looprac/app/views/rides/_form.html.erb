@@ -36,6 +36,17 @@
 			<%= f.hidden_field :source_id, class: "form-control-source"%>
 			<%= f.hidden_field :destination_id, class: "form-control-dest"%>
 
+			<h3>Chose a date and time for your Ride:</h3>
+
+			<div class="form-group">
+				<div class='input-group date' id ='datetimepicker1'>
+					<%= f.datetime_field :datetime, class: "form-control" %>
+					<span class="input-group-addon">
+						<span class="glyphicon glyphicon-calendar"></span>
+					</span>
+				</div>
+			</div>
+
 			<h3>Pick Your Options:</h3>
 
 			<%= f.check_box :ac, :checked => current_user.air_conditioned %> 
@@ -71,5 +82,3 @@
 		</div>
 	</div>
 </div>
-
-		
