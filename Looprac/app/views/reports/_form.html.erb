@@ -3,19 +3,6 @@
 		<h3>Select a user you want to report and the reason for the report:</h3>
 
 		<div class="btn-group" role="group">
-			<button class="btn btn-default disabled" type="button">Users</button>
-
-			<div class="btn-group">
-				<button id="drop-togg" class="btn btn-default dropdown-toggle reported" data-toggle="dropdown"> Select One</span></button> 
-				<ul class="dropdown-menu dmReport" role="menu">
-					<% @users.each do |user| %>
-						<% if user.username != current_user.username %>
-							<li> <a href="#"><%=user.username%></a></li>
-						<% end %>
-					<% end %>
-				</ul>
-			</div>
-
 			<button class="btn btn-default disabled" type="button">Reasons</button>
 
 			<div class="btn-group">
@@ -32,7 +19,7 @@
 		<br><br>
 
 		<%= form_for @report do |f| %>
-		<%= f.hidden_field :reported, class: "form-control-report"%>
+		<%= f.hidden_field :reported, class: "form-control-report", value: @reported%>
 		<%= f.hidden_field :reason, class: "form-control-reason"%>
 
 		<%= f.submit "Report User", class: "btn btn-primary", type: "submit" %>

@@ -11,9 +11,7 @@
     <p class="list-group-item-text"> Number of seats: <%= r.seatNum %> </p>
     <p class="list-group-item-text"> Description: <%= r.description %> </p>
     <%= link_to 'Edit', edit_ride_path(r) %>
-    <%= link_to 'Destroy', ride_path(r),
-    method: :delete,
-    data: { confirm: 'Are you sure?' } %>
+    <%= link_to 'Destroy', ride_path(r), method: :delete, data: { confirm: 'Are you sure?' } %>
   </a>
   </li>
 
