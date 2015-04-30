@@ -33,7 +33,9 @@
 
             <li><%= link_to('View My Profile', '/welcome/Profile') %></li>
             <li><%= link_to 'Rides', rides_userView_path %>   </li>
+            <% if current_user.admin? %>
             <li><%= link_to 'Users', :controller => "/users" %></li>
+            <% end %>
             <li><%= link_to('Edit Profile', edit_user_registration_path) %></li>
             <li><%= link_to('Settings', '/welcome/user_settings') %></li>
 
