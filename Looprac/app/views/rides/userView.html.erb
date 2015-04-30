@@ -3,7 +3,8 @@
   <li role="presentation"><%= link_to 'Requests', :controller => "/requests" %></li>
 </ul>
 <br>
-
+<div class="row">
+<div class="col-sm-7">
 <div class="list-group">
   <% @rides.each do |r| %>
     <a href="#" class="list-group-item">
@@ -13,5 +14,6 @@
   </a>
   <br>
   <% end %>
-  
+  </div>
+</div>
 </div>
