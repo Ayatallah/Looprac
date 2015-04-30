@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 		@useratings= Userating.where(rated_id: @user.id)
 		@userating= Userating.where(rated_id: @user.id, rater_id: current_user.id)
+		@requests = Request.where(offerer_id: @user.id, requester_id: current_user.id, response: true)
 	end
 
 	def index

@@ -55,7 +55,7 @@
                 <% end %>
 
                 <% if @userating.blank? %>
-                    <% unless @user == current_user %>
+                    <% unless @user == current_user or @requests.blank? %>
                         <li class="list-group-item text-right"><span class="pull-left"><strong><%= "Had ride with #{@user.username}?"%> </strong></span>  <%= link_to "Rate #{@user.username}!", new_user_userating_path(@user) %></li>
                     <% end %>
                 <% else %>
