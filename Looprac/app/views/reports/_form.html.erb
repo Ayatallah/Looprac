@@ -19,6 +19,7 @@
 		<br><br>
 
 		<%= form_for @report do |f| %>
+		<!-- @author: ISpoonJelly, passed the value of @reported as a parameter to the form -->
 		<%= f.hidden_field :reported, class: "form-control-report", value: @reported%>
 		<%= f.hidden_field :reason, class: "form-control-reason"%>
 
