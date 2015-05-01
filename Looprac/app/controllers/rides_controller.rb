@@ -1,7 +1,6 @@
 class RidesController < ApplicationController
-	
 	def index
-		@rides = Ride.search(params[:searchStart],params[:searchEnd])
+		@rides = Ride.search(params[:searchStart],params[:searchEnd]).where(:reviewed => true)
 
 		@rides_ids=Ride.pluck(:id)
 		@landmarks=Landmark.all 
@@ -21,10 +20,13 @@ class RidesController < ApplicationController
 	end	
 
 	def userView
-		@rides=Ride.where(:user_id => current_user.id).reverse
+		@rides=Ride.where(:user_id => current_user.id, :reviewed => true).reverse
 		@landmarks=Landmark.all
-	end	
+		@user_requests=Request.where(:requester_id => current_user.id).pluck(:ride_id)
 
+	end
+
+	
 
 	def edit
 		@ride = Ride.find(params[:id])
@@ -36,7 +38,7 @@ class RidesController < ApplicationController
   		@ride = Ride.new(ride_params)
   		@ride.user_id = current_user.id
 		if @ride.save
-			flash[:notice] = 'Ride offered Successfuly!'
+			flash[:notice] = 'Ride offered Successfuly! Awaiting Review'
     		redirect_to	'/rides/offer'
 		else
     		flash[:alert] = 'Could not offer this ride!'
@@ -73,6 +75,8 @@ class RidesController < ApplicationController
 	def ride_params
 		params.require(:ride).permit(:source_id, :destination_id, :seatNum, :description)
 	end
+
+
 
 
 end
