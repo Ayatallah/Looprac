@@ -7,6 +7,9 @@
       <p class="date"><span class="glyphicon glyphicon-time"></span><%= @landmark.created_at.strftime(" %B %d, %Y") %>
       </p>
       <p>
+        <!-- @author : Ayatallah
+             The Following Check if the Signed in User is admin and the viewed Landmark is false,
+             So Accpet/Reject Buttons Appear -->
         <% if user_signed_in? and current_user.admin? and @landmark.accepted == false %>
           <button type="button" class="btn btn-default"><%= link_to 'Accept', accept_landmark_path(@landmark) %></button>
           <button type="button" class="btn btn-warning"><%= link_to 'Reject', reject_landmark_path(@landmark) ,data: { confirm: 'Are you sure?' } %></button> 

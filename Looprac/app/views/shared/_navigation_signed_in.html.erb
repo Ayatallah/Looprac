@@ -12,6 +12,10 @@
           </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav nav-tabs navbar-nav navbar-right">
+
+        <% if user_signed_in? and current_user.admin? %>
+          <li><%= link_to 'Review Rides', rides_adminReview_path %></li>
+        <% end %>
         <li> <%= link_to 'Blog', :controller => "/posts" %> </li>
         <li>
           <%= link_to(conversations_path) do %>

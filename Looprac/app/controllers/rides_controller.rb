@@ -1,11 +1,11 @@
 class RidesController < ApplicationController
-	
+	before_filter :ensure_admin!, :only => [:adminReview, :adminDecision]
 	def index
-		@rides = Ride.search(params[:searchStart],params[:searchEnd])
+		@rides = Ride.search(params[:searchStart],params[:searchEnd]).where(:reviewed => true)
 		@rides_ids=Ride.pluck(:id)
 		@landmarks=Landmark.all 
 		@users=User.all
-		@user_requests=Request.where(:requester_id => current_user.id).pluck(:ride_id)
+		@user_requests=Request.where(:requester_id => current_user.id).pluck(:ride_id)	
 		@rides=@rides.reverse
 	end
 
@@ -20,8 +20,34 @@ class RidesController < ApplicationController
 	end	
 
 	def userView
-		@rides=Ride.where(:user_id => current_user.id).reverse
+		@rides=Ride.where(:user_id => current_user.id, :reviewed => true).reverse
 		@landmarks=Landmark.all
+		@user_requests=Request.where(:requester_id => current_user.id).pluck(:ride_id)
+
+	end
+
+	def adminReview
+		@rides=Ride.where(:reviewed => nil).reverse
+		@landmarks=Array.new
+		@offerers=Array.new
+		@rides.each do |r|
+			@user=User.find(r.user_id)
+			@source=Landmark.find(r.source_id)
+			@destination=Landmark.find(r.destination_id)
+			@landmarks.push(@source)
+			@landmarks.push(@destination)
+			@offerers.push(@user)
+		end
+
+	end	
+
+	def adminDecision
+		@ride=Ride.find(params[:id])
+		@flag = params[:flag]
+		@ride.reviewed=@flag		
+		@ride.save
+		flash[:notice] = 'Ride offer accepted'
+		redirect_to rides_adminReview_path
 	end	
 
 
@@ -41,7 +67,7 @@ class RidesController < ApplicationController
   		@ride = Ride.new(ride_params)
   		@ride.user_id = current_user.id
 		if @ride.save
-			flash[:notice] = 'Ride offered Successfuly!'
+			flash[:notice] = 'Ride offered Successfuly! Awaiting Review'
     		redirect_to	'/rides/offer'
 		else
     		flash[:alert] = 'Could not offer this ride!'
@@ -93,6 +119,15 @@ class RidesController < ApplicationController
 	def ride_params
 		params.require(:ride).permit(:source_id, :destination_id, :seatNum, :datetime, :description, :ac, :music, :smoking, :food, :pets).merge(price: @distance)
 	end
+
+private
+  def ensure_admin!
+    unless current_user.admin?
+      redirect_to root_path
+
+      return false
+    end
+  end
 
 
 end

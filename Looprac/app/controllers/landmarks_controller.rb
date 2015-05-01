@@ -2,6 +2,8 @@ class LandmarksController < ApplicationController
 	before_filter :ensure_admin!, except: [:show , :index , :create,:new]
 
 	def index
+		# @author Ayatallah
+		#Index method is updates so that only landmarks approved by admin appear to users
 		@landmarks = Landmark.where(accepted: true)
 	end
 
@@ -26,16 +28,28 @@ class LandmarksController < ApplicationController
 		@landmark = Landmark.find(params[:id])
 	end
 
+	#  @author : Ayatallah 
+	#  The Following Method is used to list the Suggested Landmarks where accepted attribute
+	#  is still false 
+	
 	def suggestions
 		@landmarks = Landmark.where(accepted: false)
 	end
 
+	#  @author : Ayatallah 
+	#  The Following Method is used to accept a suggested Landmark by updating accepted
+	#  attribute to be true 
+	
 	def accept
 		@landmark = Landmark.find(params[:id])
 		@landmark.update(accepted: true)
 		redirect_to landmarks_suggestions_path
 	end
 
+	#  @author : Ayatallah 
+	#  The Following Method is used to Reject a suggested Landmark by deleting it from the
+	#  database
+	
 	def reject
 		@landmark = Landmark.find(params[:id])
 		@landmark.destroy
@@ -45,6 +59,10 @@ class LandmarksController < ApplicationController
 	def create
 		@landmark = Landmark.new(landmark_params)
 		if @landmark.save
+			#  @author : Ayatallah 
+			# 	The Following Check is used to set accepted attribute to true in case and admin created
+			# 	new Landmark, and set it to false in case user suggests new Landmark
+			
 			if current_user.admin?
 				@landmark.update(accepted: true)
 				redirect_to @landmark
