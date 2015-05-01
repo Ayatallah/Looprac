@@ -9,8 +9,13 @@
       <p class="list-group-item-text"> Description: <%= r.description %> </p>
       <% if not current_user.id == r.user_id  %>
         <br>
+
         <% if @user_requests.include?(r.id) %>
-           <p style="background-color: #0cace7; font-size: 90%"> Ride Request sent </p>
+           <!-- @author: Zuishek, Modified the button to be disabled once the request has been sent -->
+           <button type="button" class="btn btn-default disabled" >Ride Request sent </button>
+           <!-- This is a link to form a new message to the owner of the ride which the user has requested -->
+           <%= link_to 'New Message', new_message_path(:userID => r.user_id), class: 'btn btn-default btn-primary' %>
+
         <% else %>
           <!-- @author:ISpoonJelly, added a check to see if there's a room in the Ride -->
           <% if r.seatNum > 0 %>
