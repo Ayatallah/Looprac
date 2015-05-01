@@ -49,6 +49,22 @@ end
 World(WithinHelpers)
 
 # Single-line step scoper
+
+# @author: Zuishek
+# login and logout steps for testing
+Given /^I am logged in as first user$/ do
+   @current_user = User.find_by(:username => 'user')
+  login_as(@current_user, :scope => :user)
+end
+Given /^I am logged in as second user$/ do
+   @current_user = User.find_by(:username => 'user2')
+  login_as(@current_user, :scope => :user)
+end
+When(/^I logout$/) do
+  logout
+end
+
+
 When /^(.*) within (.*[^:])$/ do |step, parent|
   with_scope(parent) { When step }
 end
