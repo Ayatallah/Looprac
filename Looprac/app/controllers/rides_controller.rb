@@ -70,6 +70,7 @@ class RidesController < ApplicationController
 	end
 
 	def ride_params
+		# @author: ISpoonJelly, added ride options to the ride_params
 		params.require(:ride).permit(:source_id, :destination_id, :seatNum, :datetime, :description, :ac, :music, :smoking, :food, :pets)
 	end
 
