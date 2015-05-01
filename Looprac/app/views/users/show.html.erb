@@ -12,6 +12,7 @@
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Last seen</strong></span><%= @user.last_sign_in_at.strftime("%d.%m.%Y") %></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Rank: </strong></span><%= @user.sign_in_count %></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Gender:</strong></span><% if @user.gender == 1 %> <%= "Female" %> <% else %> <%= "Male" %> <% end %></li>
+                <!-- @author: ISpoonJelly, only show the report link if I havn't previously reported this User -->
                 <% unless @reports.include? @user.username %>
                     <!-- @author:ISpoonJelly, only made the report link visible if the logged in user id was present in                     either arrays -->
                     <% if @tookRideWith.include? current_user.id or @gaveRideTo.include? current_user.id %>
