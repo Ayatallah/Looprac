@@ -27,7 +27,15 @@
         </li>
         <li> <%= link_to  'Offer a Ride!', rides_offer_path %> </li>
         <li> <%= link_to 'Landmarks', landmarks_path %> </li>
-
+         <li> <%= link_to(notifications_path) do %>
+               Notifications
+               <% if number_of_unviewed_notifications(current_user) > 0 %>
+               <span class ='badge'>
+                <%= number_of_unviewed_notifications(current_user) %>
+              </span>
+              <% end %>
+          <% end %>
+        </li>
          <li class"dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
             <%= current_user.username %> &nbsp; 

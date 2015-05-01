@@ -1,5 +1,5 @@
 <% @notification.each do |notification| %>
-
+  <% viewed(notification.id,current_user.id) %>
     <%= notification.message %>
-
+  <br>
  <% end %>
