@@ -2,7 +2,6 @@ class RidesController < ApplicationController
 	before_filter :ensure_admin!, :only => [:adminReview, :adminDecision]
 	def index
 		@rides = Ride.search(params[:searchStart],params[:searchEnd]).where(:reviewed => true)
-
 		@rides_ids=Ride.pluck(:id)
 		@landmarks=Landmark.all 
 		@users=User.all
@@ -97,7 +96,7 @@ class RidesController < ApplicationController
 	end
 
 	def ride_params
-		params.require(:ride).permit(:source_id, :destination_id, :seatNum, :description)
+		params.require(:ride).permit(:source_id, :destination_id, :seatNum, :datetime, :description, :ac, :music, :smoking, :food, :pets)
 	end
 
 private
