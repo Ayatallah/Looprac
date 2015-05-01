@@ -1,8 +1,9 @@
 <!-- Author: Karim Taha -->
 <!-- User has to be an admin in order to render the page -->
 <% if current_user.admin? %>
-<% if current_user.blank? %>
+
     <%= link_to 'Back to Home', root_path %> 
+   
 <% else %>	
 
   <%= form_tag users_path, method: 'get' do %>

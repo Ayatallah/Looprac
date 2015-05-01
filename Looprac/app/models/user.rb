@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
    has_many :lmratings, dependent: :destroy
   acts_as_voter
   acts_as_messageable
+  mount_uploader :image, ImageUploader
 
   def mailboxer_email(object)
   email
