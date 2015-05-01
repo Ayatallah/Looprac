@@ -6,12 +6,6 @@ class UsersController < ApplicationController
 		@reports = Report.where("reporter" == User.find_by_id(@user.id).username).pluck("reported")
 		@tookRideWith = Request.where("requester_id" => @user.id).where("response" => true).pluck("offerer_id")
 		@gaveRideTo = Request.where("offerer_id" => @user.id).where("response" => true).pluck("requester_id")
-		puts @user.id
-		puts "HEY1!"
-		puts @tookRideWith
-		puts "HEY2!"
-		puts @gaveRideTo
-
 		@useratings = Userating.where(rated_id: @user.id)
 		@userating = Userating.where(rated_id: @user.id, rater_id: current_user.id)
 	end

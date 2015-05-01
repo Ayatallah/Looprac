@@ -5,8 +5,11 @@ Rails.application.routes.draw do
   
   get "rides/offer"
   get "rides/userView"
+  get "rides/adminReview"
+  get "rides/adminDecision"
   get "landmarks/suggestions"
   resources :searches
+  resources :notifications
   resources :rides
   resources :reports
   resources :posts do
@@ -41,7 +44,7 @@ end
 
 resources :users do
   member do
-    get :ratings, :ban
+    get :ratings, :ban, :rides, :reports
   end
 end
 resources :rides
