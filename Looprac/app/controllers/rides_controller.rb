@@ -100,7 +100,14 @@ class RidesController < ApplicationController
 		params.require(:ride).permit(:source_id, :destination_id, :seatNum, :description)
 	end
 
+private
+  def ensure_admin!
+    unless current_user.admin?
+      redirect_to root_path
 
+      return false
+    end
+  end
 
 
 end
