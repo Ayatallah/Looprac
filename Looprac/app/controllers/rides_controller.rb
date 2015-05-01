@@ -1,4 +1,5 @@
 class RidesController < ApplicationController
+	before_filter :ensure_admin!, :only => [:adminReview, :adminDecision]
 	def index
 		@rides = Ride.search(params[:searchStart],params[:searchEnd]).where(:reviewed => true)
 
@@ -26,7 +27,30 @@ class RidesController < ApplicationController
 
 	end
 
-	
+	def adminReview
+		@rides=Ride.where(:reviewed => nil).reverse
+		@landmarks=Array.new
+		@offerers=Array.new
+		@rides.each do |r|
+			@user=User.find(r.user_id)
+			@source=Landmark.find(r.source_id)
+			@destination=Landmark.find(r.destination_id)
+			@landmarks.push(@source)
+			@landmarks.push(@destination)
+			@offerers.push(@user)
+		end
+
+	end	
+
+	def adminDecision
+		@ride=Ride.find(params[:id])
+		@flag = params[:flag]
+		@ride.reviewed=@flag		
+		@ride.save
+		flash[:notice] = 'Ride offer accepted'
+		redirect_to rides_adminReview_path
+	end	
+
 
 	def edit
 		@ride = Ride.find(params[:id])
