@@ -58,6 +58,12 @@ class RidesController < ApplicationController
 	end
 
 	def create
+		# @author: ISpoonJelly, retreiving the from and to landmarks
+		@from = Landmark.find_by_id(ride_params[:source_id])
+		@to = Landmark.find_by_id(ride_params[:destination_id])
+		# @author: ISpoonJelly, calculating the distance between the two landmarks and multiplying by a factor
+		@distance = distance [@from.latitude, @from.longitude], [@to.latitude, @to.longitude]
+		@price = @distance * 5 + current_user.rank
   		@ride = Ride.new(ride_params)
   		@ride.user_id = current_user.id
 		if @ride.save
@@ -95,9 +101,24 @@ class RidesController < ApplicationController
 		landmark_id
 	end
 
+	# @author: ISpoonJelly, distance method that calculates the distance between two GEO locations
+	def distance loc1, loc2
+	  rad_per_deg = Math::PI/180  # PI / 180
+	  rkm = 6371                  # Earth radius in kilometers
+
+	  dlat_rad = (loc2[0]-loc1[0]) * rad_per_deg  # Delta, converted to rad
+	  dlon_rad = (loc2[1]-loc1[1]) * rad_per_deg
+
+
+	  a = Math.sin(dlat_rad/2)**2 + Math.cos(loc1[0] * rad_per_deg) * Math.cos(loc2[0] * rad_per_deg) * Math.sin(dlon_rad/2)**2
+	  c = 2 * Math::atan2(Math::sqrt(a), Math::sqrt(1-a))
+
+	  rkm * c # Delta in Kilometers
+	end
+
 	def ride_params
-		# @author: ISpoonJelly, added ride options to the ride_params
-		params.require(:ride).permit(:source_id, :destination_id, :seatNum, :datetime, :description, :ac, :music, :smoking, :food, :pets)
+		# @author: ISpoonJelly, added Rides options to ride_params
+		params.require(:ride).permit(:source_id, :destination_id, :seatNum, :datetime, :description, :ac, :music, :smoking, :food, :pets).merge(price: @price)
 	end
 
 private
