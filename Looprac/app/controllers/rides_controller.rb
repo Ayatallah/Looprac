@@ -63,7 +63,7 @@ class RidesController < ApplicationController
 		@to = Landmark.find_by_id(ride_params[:destination_id])
 		# @author: ISpoonJelly, calculating the distance between the two landmarks and multiplying by a factor
 		@distance = distance [@from.latitude, @from.longitude], [@to.latitude, @to.longitude]
-		@distance = @distance * 5 + current_user.rank
+		@price = @distance * 5 + current_user.rank
   		@ride = Ride.new(ride_params)
   		@ride.user_id = current_user.id
 		if @ride.save
@@ -117,7 +117,7 @@ class RidesController < ApplicationController
 	end
 
 	def ride_params
-		params.require(:ride).permit(:source_id, :destination_id, :seatNum, :datetime, :description, :ac, :music, :smoking, :food, :pets)
+		params.require(:ride).permit(:source_id, :destination_id, :seatNum, :datetime, :description, :ac, :music, :smoking, :food, :pets).merge(price: @price)
 	end
 
 private
