@@ -27,7 +27,7 @@ class UsersController < ApplicationController
 
 	def reports
 		@user = User.find(params[:id])
-		@reports = Report.where("reported" == User.find_by_id(@user.id).username)
+		@reports = Report.where("reported" => User.find_by_id(@user.id).username)
 	end
 
 	def rides
