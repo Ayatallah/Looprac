@@ -43,7 +43,7 @@ Ride.create(user_id: 1, source_id: 2, destination_id: 3, seatNum: 4, description
 end
 
 Before do
-  User.create!(:username => 'user', :password => 'password', :email => 'email@student.guc.edu.eg', :first_name => 'Saeed', :last_name => 'Elhawa', :gender => 1)
+  User.create!(:username => 'user', :password => 'password', :email => 'email@student.guc.edu.eg', :first_name => 'Saeed', :last_name => 'Elhawa', :gender => 1, :admin => true)
 User.create!(:username => 'user2', :password => 'password', :email => 'email2@student.guc.edu.eg', :first_name => 'Le', :last_name => 'Grande', :gender => 1)
 end
 World(WithinHelpers)

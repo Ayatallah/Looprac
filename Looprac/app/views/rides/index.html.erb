@@ -9,7 +9,7 @@
       <p class="list-group-item-text"> Description: <%= r.description %> </p>
       <% if not current_user.id == r.user_id  %>
         <br>
-        <% if @ride_req_array.fetch(r.id).include?(current_user.id) %>
+         <% if @user_requests.include?(r.id) %>
            <p style="background-color: #0cace7; font-size: 90%"> Ride Request sent </p>
         <% else %>
           <button type="button" class="btn btn-default" ><%= link_to 'Send Request', requests_path(:ride_id => r.id, :requester_id => current_user.id), :method => :post %></button>
@@ -25,4 +25,3 @@
 </head>
 
 </html>
-
