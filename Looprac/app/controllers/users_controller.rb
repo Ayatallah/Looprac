@@ -3,8 +3,7 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
-		# @author: ISpoonJelly, extracted the usernames of the users I reported
-		@reports = Report.where("reporter" == current_user.username).pluck("reported")
+		@reports = Report.where("reporter" == User.find_by_id(@user.id).username).pluck("reported")
 		@tookRideWith = Request.where("requester_id" => @user.id).where("response" => true).pluck("offerer_id")
 		@gaveRideTo = Request.where("offerer_id" => @user.id).where("response" => true).pluck("requester_id")
 		@useratings = Userating.where(rated_id: @user.id)
