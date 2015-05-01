@@ -16,8 +16,10 @@
       <br>
       <% if r.response == true %>
         <p style="background-color: #0cace7; font-size: 90%"> Ride Request Accepted </p>
+        <% create_notification(r.id,r.response) %> <!-- @author: Zuishek creates a new notification using the helper method with the id request and response -->
       <% elsif r.response == false %>
         <p style="background-color: LightGray; font-size: 90%"> Ride Request Rejected </p>
+        <% create_notification(r.id,r.response) %>
       <% else %>
         <button type="button" class="btn btn-default" ><%= link_to 'Accept', edit_request_path(r, :flag => true) %></button>
         <button type="button" class="btn btn-default" ><%= link_to 'Reject', edit_request_path(r, :flag => false) %></button>
