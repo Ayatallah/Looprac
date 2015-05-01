@@ -16,3 +16,5 @@
 //= require bootstrap-sprockets
 //= require_tree .
 //= require social-share-button
+//= require moment
+//= require bootstrap-datetimepicker
