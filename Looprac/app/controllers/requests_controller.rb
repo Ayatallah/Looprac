@@ -43,12 +43,22 @@ class RequestsController < ApplicationController
 		redirect_to rides_path
 
 	end
-
+     # @author: Zuishek
+     # formats a message from the request, getting the name of the offerer and the respone whether accepted 
+     # or rejected and creates a new notfication
+     
 	def edit
 		@request=Request.find(params[:id])
 		@flag = params[:flag]
 		@request.response=@flag		
 		@request.save
+		offererName = User.find(@request.offerer_id).username
+		acceptance = if @flag == true then "accepted" else "rejected" end
+		from = Landmark.find(Ride.find(@request.ride_id).destination_id).name
+       	to = Landmark.find(Ride.find(@request.ride_id).source_id).name
+        message = "#{offererName} has #{acceptance} your request for the ride from #{from} to #{to}"
+		@notification = Notification.new(:message => message, :userID => @request.requester_id)
+		@notification.save
 		redirect_to requests_path
-	end	
+	end
 end
