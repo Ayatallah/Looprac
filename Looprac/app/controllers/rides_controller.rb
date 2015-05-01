@@ -32,8 +32,10 @@ class RidesController < ApplicationController
 	end
 
 	def create
+		# @author: ISpoonJelly, retreiving the from and to landmarks
 		@from = Landmark.find_by_id(ride_params[:source_id])
 		@to = Landmark.find_by_id(ride_params[:destination_id])
+		# @author: ISpoonJelly, calculating the distance between the two landmarks and multiplying by a factor
 		@distance = distance [@from.latitude, @from.longitude], [@to.latitude, @to.longitude]
 		@distance = @distance * 5 + current_user.rank
   		@ride = Ride.new(ride_params)
@@ -73,6 +75,7 @@ class RidesController < ApplicationController
 		landmark_id
 	end
 
+	# @author: ISpoonJelly, distance method that calculates the distance between two GEO locations
 	def distance loc1, loc2
 	  rad_per_deg = Math::PI/180  # PI / 180
 	  rkm = 6371                  # Earth radius in kilometers
