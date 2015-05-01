@@ -1,0 +1,26 @@
+<div class="list-group">
+  <% @i=0 %>
+  <% @k=0 %>
+  <% @rides.each do |r| %>
+
+    <div class="list-group-item">
+      <h4 class="list-group-item-heading"><%= @offerers.fetch(@i).username%> offered a ride</h4>
+      <p class="list-group-item-text">This user offered a ride from <%= @landmarks.fetch(@k).name %>
+      to <%= @landmarks.fetch(@k+1).name %> </p>
+      <br>
+      <% if r.reviewed == true %>
+        <p style="background-color: #0cace7; font-size: 90%"> Ride Offer Accepted </p>
+      <% elsif r.reviewed == false %>
+        <p style="background-color: LightGray; font-size: 90%"> Ride Offer Rejected </p>
+      <% else %>
+        <button type="button" class="btn btn-default" ><%= link_to 'Accept', rides_adminDecision_path(r, :flag => true, :id => r.id) %></button>
+        <button type="button" class="btn btn-default" ><%= link_to 'Reject', rides_adminDecision_path(r, :flag => false,:id => r.id) %></button>
+      <% end %>
+    </div>
+  <% @i=@i+1 %>
+  <% @k=@k+2 %>  
+  <br>
+  <br>
+  <% end %>  
+</div>  
+   
