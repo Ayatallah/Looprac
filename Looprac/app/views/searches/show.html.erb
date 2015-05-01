@@ -1,0 +1,17 @@
+<h1> Search Results </h1>
+<% if @search.search_rides.empty? %>
+	<p> No records <p>
+<% else %>
+
+	<% @search.search_rides.each do |r| %>
+<div class="list-group-item clearfix"> 
+      <h4 class="list-group-item-heading"> An available ride is from <%= r.source.name %> to <%= r.destination.name %> </h4>
+      <p class="list-group-item-text"> Number of seats: <%= r.seatNum %> </p>
+      <p class="list-group-item-text"> Description: <%= r.description %> </p>
+      <p class="list-group-item-text"> Time: <%= r.datetime %> </p>
+    </div>
+    <br>  
+  <% end %>
+<% end %>
+
+ 
