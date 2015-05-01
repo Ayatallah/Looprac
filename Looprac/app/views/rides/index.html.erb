@@ -9,7 +9,7 @@
       <p class="list-group-item-text"> Description: <%= r.description %> </p>
       <% if not current_user.id == r.user_id  %>
         <br>
-         <% if @user_requests.include?(r.id) %>
+        <% if @user_requests.include?(r.id) %>
            <p style="background-color: #0cace7; font-size: 90%"> Ride Request sent </p>
         <% else %>
           <!-- @author:ISpoonJelly, added a check to see if there's a room in the Ride -->
