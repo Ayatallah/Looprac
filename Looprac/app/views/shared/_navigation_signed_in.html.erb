@@ -29,9 +29,10 @@
         <li> <%= link_to 'Landmarks', landmarks_path %> </li>
 
          <li class"dropdown">
+<<<<<<< HEAD
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
             <%= current_user.username %> &nbsp; 
-            <img class="nav-prof-img" role="button" src="/assets/fbdefault.jpg"> 
+            <img class="nav-prof-img" role="button" src="/assets/defaultpp.png"> 
             <span class="caret"></span>
             <!--@author: Zuishek
              Notify user -->
@@ -41,6 +42,9 @@
                  </span>
                 <% end %>
           </a>
+=======
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <%= current_user.username %> &nbsp; <img class="nav-prof-img" role="button" src="<%= current_user.image_url(:thumb).to_s%>"> <span class="caret"></span></a>
+>>>>>>> 16b5c8b
           <ul class="dropdown-menu" role="menu">
 
 
