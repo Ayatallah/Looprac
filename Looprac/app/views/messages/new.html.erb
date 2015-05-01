@@ -2,8 +2,9 @@
 <div class="panel panel-default">
 <div class="panel-heading">
 <div class="panel-body">
-
-<%= form_tag messages_path, :class =>'form-horizontal', method: :post do %>
+<!-- @author: Zuishek 
+   the id of the owner of the ride is passed in the form tag so the create method can acquire the id -->
+<%= form_tag messages_path(:user_id => @receiver), :class =>'form-horizontal', method: :post do %>
 
      
      
