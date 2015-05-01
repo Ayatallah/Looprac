@@ -8,16 +8,26 @@ class Ride < ActiveRecord::Base
 	belongs_to :user, :class_name => 'User'
 	has_many :ride_in_request, :class_name => 'Request', :foreign_key => 'ride_id'
 
-	def self.search(searchStart,searchEnd)
-		if searchStart && searchEnd
+	def self.search(searchStart,searchEnd,searchDate)
+		if searchStart && searchEnd && searchDate
 	 		landmarkStart = Landmark.find_by name: searchStart
 	 		landmarkEnd = Landmark.find_by name:searchEnd
-	 		if landmarkStart.present? && landmarkEnd.present?
-	 			where(source_id: landmarkStart.id).where(destination_id: landmarkEnd) 
+	 		rideTime = searchDate.to_datetime
+
+	 		if landmarkStart.present? && landmarkEnd.present? && rideTime.present?
+	 			where("datetime >= ?", rideTime).where(source_id: landmarkStart.id).where(destination_id: landmarkEnd)
+	 		elsif landmarkStart.present? && landmarkEnd.present?
+	 			where(source_id: landmarkStart.id).where(destination_id: landmarkEnd)
+	 		elsif landmarkStart.present? && rideTime.present?
+	 			where("datetime >= ?", rideTime).where(source_id: landmarkStart.id)
 	 		elsif landmarkStart.present?
 	 			where(source_id: landmarkStart.id)
+	 		elsif landmarkEnd.present? && rideTime.present?
+	 			where("datetime >= ?", rideTime).where(destination_id: landmarkEnd) 
 	 		elsif landmarkEnd.present?
-	 			where(destination_id: landmarkEnd) 
+	 			where(destination_id: landmarkEnd)
+	 		elsif rideTime.present?
+	 			where("datetime >= ?", rideTime)	
 	 		else
 	 			all
 	 		end
