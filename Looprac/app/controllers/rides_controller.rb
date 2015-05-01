@@ -1,7 +1,7 @@
 class RidesController < ApplicationController
 	
 	def index
-		@rides = Ride.search(params[:searchStart],params[:searchEnd])
+		@rides = Ride.search(params[:searchStart],params[:searchEnd],params[:searchDate])
 		@rides_ids=Ride.pluck(:id)
 		@landmarks=Landmark.all 
 		@users=User.all
