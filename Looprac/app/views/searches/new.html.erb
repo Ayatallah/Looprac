@@ -1,0 +1,38 @@
+
+<div class="well">
+  <h3> Advanced Search </h3>
+  <br>
+  <%= simple_form_for @search do |f| %>
+ <div class="form-group">
+  <%= f.association :source, label: "From" %>
+  <%= f.association :destination, label: "To" %>
+  <%= f.label :datetime, 'Time' %>
+    <div class='input-group date' id ='datetimepicker1'>
+      <span class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar"></span>
+      </span>
+      <%= f.datetime_field :datetime, class: "form-control", label: "Time" %>    
+      </div>
+      <br>
+  <%= f.input :price, input_html: { min: '0', step: 'any' } %>
+  <%= f.input :gender, label: 'I want the ride to have only..', collection: [ [0, 'Males' ], [1, 'Females'] ], as: :radio_buttons, label_method: :last, value_method: :first,item_wrapper_class: 'inline'%>
+  <%= f.input :seatnum ,label: 'Seat number', collection: 1..5%>
+  <%= f.input :ac , label: 'I want the car to have an AC.' %>
+  <%= f.input :food, label: 'I want to be able to have food inside the car.' %>
+  <%= f.input :pets, label: 'I want to bring my pet(s) with me.' %>
+  <%= f.input :smoking, label: 'I want to smoke inside the car.' %>
+  <%= f.input :music, label: 'I want to be able to listen to music inside the car.' %>
+  <%= f.button :submit , 'Submit Search', class: "btn btn-primary"%>
+<% end %>
+<script type="text/javascript">
+$(function () {
+            $('#datetimepicker1').datetimepicker({
+              format: 'DD-MMM-YYYY HH:mm'
+            });
+        });
+  </script>
+
+
+
+
+<!-- :source, :destination, :seatnum, :price, :gender, :ac, :food, :pets, :smoking, :music, :datetime >

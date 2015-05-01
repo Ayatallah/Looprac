@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get "rides/adminReview"
   get "rides/adminDecision"
   get "landmarks/suggestions"
+  resources :searches
   resources :notifications
   resources :rides
   resources :reports

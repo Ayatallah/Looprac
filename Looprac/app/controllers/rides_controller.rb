@@ -1,7 +1,7 @@
 class RidesController < ApplicationController
 	before_filter :ensure_admin!, :only => [:adminReview, :adminDecision]
 	def index
-		@rides = Ride.search(params[:searchStart],params[:searchEnd]).where(:reviewed => true)
+		@rides = Ride.search(params[:searchStart],params[:searchEnd],params[:searchDate]).where(:reviewed => true)
 		@rides_ids=Ride.pluck(:id)
 		@landmarks=Landmark.all 
 		@users=User.all
