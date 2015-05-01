@@ -36,5 +36,16 @@ class UsersController < ApplicationController
 		@useratings= Userating.where(rated_id: @user.id)
 	end
 
+	def reports
+		@user = User.find(params[:id])
+		@reports = Report.where("reported" => User.find_by_id(@user.id).username)
+	end
+
+	def rides
+		@user = User.find(params[:id])
+		@landmarks = Landmark.all
+		@rides = Ride.where(user_id: @user.id)
+	end
+
 
 end

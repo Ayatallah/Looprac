@@ -42,7 +42,7 @@ end
 
 resources :users do
   member do
-    get :ratings, :ban
+    get :ratings, :ban, :rides, :reports
   end
 end
 resources :rides
