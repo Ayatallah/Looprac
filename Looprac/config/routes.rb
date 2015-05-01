@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "rides/offer"
   get "rides/userView"
   get "landmarks/suggestions"
+  respurces :searches
   resources :rides
   resources :reports
   resources :posts do
