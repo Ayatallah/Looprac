@@ -5,11 +5,6 @@ class ReportsController < ApplicationController
 		@reported = User.find_by_id(params[:id]).username
 	end
 
-	def index
-
-	end
-
-
 	def create
   		@report = Report.new(report_params)
   		@report.reporter = current_user.username
@@ -18,7 +13,7 @@ class ReportsController < ApplicationController
     		redirect_to	user_path((User.find_by_username(report_params[:reported])).id)
   		else
     		flash[:alert] = 'User could not be reported!'
-    		redirect_to	'/reports/index'
+    		redirect_to	report_path((User.find_by_username(report_params[:reported])).id)
   		end
 	end
 
