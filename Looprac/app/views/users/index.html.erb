@@ -1,3 +1,4 @@
+<!-- Author: Karim Taha -->
 <!-- User has to be an admin in order to render the page -->
 <% if current_user.admin? %>
 <% if current_user.blank? %>
@@ -32,6 +33,7 @@
 	</div>
 <% end %>
 <% else %>
+<!-- Author: Karim Taha -->
 <!-- If user is not an admin, a flash notice appears and a link to home page -->
 	<% flash[:notice] = 'Sorry, you are not authorized to view this!'%>
 	<%= link_to 'Back to Home', root_path %> 
