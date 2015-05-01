@@ -1,4 +1,4 @@
-<body class="landing">
+<body>
     <div class="container">
         <br></br>
         <div class="row">
@@ -12,6 +12,13 @@
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Last seen</strong></span><%= @user.last_sign_in_at.strftime("%d.%m.%Y") %></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Rank: </strong></span><%= @user.sign_in_count %></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Gender:</strong></span><% if @user.gender == 1 %> <%= "Female" %> <% else %> <%= "Male" %> <% end %></li>
+                <!-- @author: ISpoonJelly, only show the report link if I havn't previously reported this User -->
+                <% unless @reports.include? @user.username %>
+                    <!-- @author:ISpoonJelly, only made the report link visible if the logged in user id was present in                     either arrays -->
+                    <% if @tookRideWith.include? current_user.id or @gaveRideTo.include? current_user.id %>
+                        <li class="list-group-item text right"> <%= link_to "Report User", report_path(@user.id) %> </li>
+                    <% end %>
+                <% end %>
                 <% unless current_user == @user %>
                     <% if user_signed_in? and current_user.admin? %>
                         <% unless @user.banned? %>
@@ -55,7 +62,10 @@
                 <% end %>
 
                 <% if @userating.blank? %>
-                    <% unless @user == current_user %>
+                    <!-- @author : Ayatallah
+                          The Following Let Rate User option appear to user except if the current user is displaying his own profile or there is no rides taken with the 
+                          displayed user -->
+                    <% unless @user == current_user or @requests.blank? %>
                         <li class="list-group-item text-right"><span class="pull-left"><strong><%= "Had ride with #{@user.username}?"%> </strong></span>  <%= link_to "Rate #{@user.username}!", new_user_userating_path(@user) %></li>
                     <% end %>
                 <% else %>
@@ -69,7 +79,7 @@
                     <% end %>
                 <% end %>
                 <% if current_user.admin? %>
-                    <li class="list-group-item text-muted main-color"><%= link_to "View #{@user.username} Reviews" , ratings_user_path(@user) %> </li>
+                    <li class="list-group-item text-muted main-color"><%= link_to "View #{@user.username} History" , ratings_user_path(@user) %> </li>
                 <% end %>
             </ul>
         </div>
@@ -91,11 +101,11 @@
 </body>
 
         <script>
-                $('.star-rating').raty({
-                    path: '/assets/',
-                    readOnly: true,
-                    score: function() {
-                        return $(this).attr('data-score');
+            $('.star-rating').raty({
+                path: '/assets/',
+                readOnly: true,
+                score: function() {
+                    return $(this).attr('data-score');
                 }
             });
         </script>

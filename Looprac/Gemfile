@@ -9,34 +9,7 @@ gem "mailboxer"
 gem 'devise'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'pry'
-group :development, :test do
-   gem 'rspec', ">=1.2.2"
-    gem 'rspec-rails', ">=1.2.2"
-    gem 'capybara'
-    gem 'cucumber-rails', :require => false
-    gem 'cucumber-rails-training-wheels' 
-    gem 'database_cleaner'
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
-
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
-  gem 'rspec', ">=1.2.2"
-  gem 'rspec-rails',">=1.2.2"
-  gem 'capybara'
-  gem 'cucumber-rails', require: false
-  gem 'cucumber-rails-training-wheels'
-  gem 'database_cleaner'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'sqlite3'
-end
-
-group :production do
-	gem 'pg'
-	gem 'rails_12factor'
-end
-
+gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -60,6 +33,11 @@ gem 'autoprefixer-rails'
 
 gem 'bootstrap-will_paginate'
 gem 'will_paginate'
+
+# @author:ISpoonJelly, added momentJS and BSdateTimePicker to allow date/time picking
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -69,8 +47,26 @@ gem 'will_paginate'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-group :test do
-	gem 'cucumber-rails', :require => false
-	gem 'database_cleaner'
+group :production do
+
+  gem 'pg'
+  gem 'rails_12factor'
+end
+
+group :development, :test do
+
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console', '~> 2.0'
+
+  # Gems needed to create tests for Looprac
+  gem 'rspec', ">=1.2.2"
+  gem 'rspec-rails',">=1.2.2"
+  gem 'capybara'
+  gem 'cucumber-rails', require: false
+  gem 'cucumber-rails-training-wheels'
+  gem 'database_cleaner'
+
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
 end
 

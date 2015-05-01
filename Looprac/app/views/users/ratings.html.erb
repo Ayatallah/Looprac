@@ -1,44 +1,35 @@
+<ul class="nav nav-tabs">
+  <li role="presentation"><%= link_to 'Rides', rides_user_path(@user) %></li>
+  <li role="presentation" class="active"><a href="#">Reviews</a></li>
+  <li role="presentation"><%= link_to 'Reports', reports_user_path(@user) %></li>
+</ul>
+<br>
 
-<div class="container">
-  <div class="col-md-8">
-    <h1 class="page-header">
-      <% if @user == current_user %>
-      	<%= "My Reviews"%>
-      <% else %>
-      	<%= "#{@user.username}'s Reviews"%>
+    <div class="list-group">
+      <% @useratings.each do |userating| %> 
+        <li class="list-group-item">
+            <p class="lead">
+              <div class="star-rating" data-score= <%= userating.rating %>></div>
+            </p>     
+            <% if userating.review.blank? %>
+               <p class="list-group-item-text"> Review: -- </p>
+            <% else %>
+                <p class="list-group-item-text"> Review: <%= userating.review %> </p>
+            <% end %> 
+              <p class="list-group-item-text"> By <%= link_to userating.rater.username, userating.rater %></p>
+        </li>
+        <br>
       <% end %>
-    </h1>
-     <h1 class="page-header">
-      <small> Total Score: <%= @user.points %> Points</small>
-      <small> Based on: <%= @useratings.count %> Reviews</small>
-    </h1>
-    <% @useratings.each do |userating| %> 
-        <p class="lead">
-        	<div class="star-rating" data-score= <%= userating.rating %>></div>
-      	</p>     
-      	<% if userating.review.blank? %>
-			<p class="lead">
-        		No Review.
-      		</p>
-		<% else %>
-			<p class="lead">
-        		<%= userating.review %>
-      		</p>
-		<% end %> 
-		 <p class="lead">
-        	By <%= link_to userating.rater.username, userating.rater %>
-      	</p>
-	<% end %>
-  </div>
-</div> 	
+    </div>
 
 
-		<script>
-            	$('.star-rating').raty({
-      				path: '/assets/',
-      				readOnly: true,
-      				score: function() {
-            			return $(this).attr('data-score');
-   			 	}
-  			});
-		</script>
+
+    <script>
+              $('.star-rating').raty({
+              path: '/assets/',
+              readOnly: true,
+              score: function() {
+                  return $(this).attr('data-score');
+          }
+        });
+    </script>
