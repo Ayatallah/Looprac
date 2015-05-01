@@ -38,6 +38,7 @@
 
 			<h3>Chose a date and time for your Ride:</h3>
 
+			<!-- @author:ISpoonJelly, added a datepicker element -->
 			<div class="form-group">
 				<div class='input-group date' id ='datetimepicker1'>
 					<%= f.datetime_field :datetime, class: "form-control" %>
@@ -49,9 +50,9 @@
 
 			<h3>Pick Your Options:</h3>
 
+			<!-- @author:ISpoonJelly, added a checkbox for each option-->
 			<%= f.check_box :ac, :checked => current_user.air_conditioned %> 
 			<%= label_tag(:ac, "Air-Conditioned") %>
-
 
 			<br/>
 			<%= f.check_box :music, :checked => current_user.music %> 
