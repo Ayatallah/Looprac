@@ -59,8 +59,8 @@ class RequestsController < ApplicationController
 			acceptance = "rejected"
 		end
 		to = Landmark.find(Ride.find(@request.ride_id).destination_id).name
-       	from = Landmark.find(Ride.find(@request.ride_id).source_id).name
-        message = "#{offererName} has #{acceptance} your request for the ride from #{from} to #{to} #{@flag}"
+       	        from = Landmark.find(Ride.find(@request.ride_id).source_id).name
+                message = "#{offererName} has #{acceptance} your request for the ride from #{from} to #{to} #{@flag}"
 		@notification = Notification.new(:message => message, :userID => @request.requester_id)
 		@notification.save
 		redirect_to requests_path
