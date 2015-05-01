@@ -60,7 +60,10 @@
                 <% end %>
 
                 <% if @userating.blank? %>
-                    <% unless @user == current_user %>
+                    <!-- @author : Ayatallah
+                          The Following Let Rate User option appear to user except if the current user is displaying his own profile or there is no rides taken with the 
+                          displayed user -->
+                    <% unless @user == current_user or @requests.blank? %>
                         <li class="list-group-item text-right"><span class="pull-left"><strong><%= "Had ride with #{@user.username}?"%> </strong></span>  <%= link_to "Rate #{@user.username}!", new_user_userating_path(@user) %></li>
                     <% end %>
                 <% else %>
