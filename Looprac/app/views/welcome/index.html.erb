@@ -1,59 +1,50 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Landing Page</title>
-</head>
-<body>
-
-	<div class="container">
+<div class="container">
 	<br>
 	<div class="row">
-		<div class="col-sm-8 search well">
+		<div class="col-sm-10 search well">
 			<%= render 'search_rides' %>
+		</div>
+		<div class="col-sm-2">
+		<div class="sidebar-nav-fixed affix">
+			<div class="well">
+				<ul class="nav ">
+					<li class="active center"><a href="https://www.facebook.com"><img src="/assets/FBx.png" class="nav-prof-img" onmouseover="this.src='/assets/FB.png';" onmouseout="this.src='/assets/FBx.png';"></a></li>
+					<li class="active center"><a href="https://www.twitter.com"><img src="/assets/Twitterx.png" class="nav-prof-img" onmouseover="this.src='/assets/Twitter.png';" onmouseout="this.src='/assets/Twitterx.png';"></a></li>
+					<li class="active center"><a href="https://plus.google.com"><img src="/assets/GPx.png" class="nav-prof-img" onmouseover="this.src='/assets/GP.png';" onmouseout="this.src='/assets/GPx.png';"></a></li>
+					<li class="active center"><%= link_to 'Blog', :controller => "/posts" %></li>
+				</ul>
+			</div>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-2"></div>
-		<div class="col-sm-2">
-			<div class="sidebar-nav-fixed affix">
-				<div class="well">
-					<ul class="nav ">
-						<li class="active center"><a href="https://www.facebook.com"><img src="/assets/FBx.png" class="nav-prof-img" onmouseover="this.src='/assets/FB.png';" onmouseout="this.src='/assets/FBx.png';"></a></li>
-						<li class="active center"><a href="https://www.twitter.com"><img src="/assets/Twitterx.png" class="nav-prof-img" onmouseover="this.src='/assets/Twitter.png';" onmouseout="this.src='/assets/Twitterx.png';"></a></li>
-						<li class="active center"><a href="https://plus.google.com"><img src="/assets/GPx.png" class="nav-prof-img" onmouseover="this.src='/assets/GP.png';" onmouseout="this.src='/assets/GPx.png';"></a></li>
-						<li class="active center"><%= link_to 'Blog', :controller => "/posts" %></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="col-sm-10">
-		<div id="myCarousel" class="carousel slide" data-ride="carousel">
-			<!-- Indicators -->
-			<ol class="carousel-indicators">
-				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-				<li data-target="#myCarousel" data-slide-to="1"></li>
-			</ol>
+		<div class="col-sm-10">
+			<div id="myCarousel" class="carousel slide" data-ride="carousel">
+				<!-- Indicators -->
+				<ol class="carousel-indicators">
+					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+					<li data-target="#myCarousel" data-slide-to="1"></li>
+				</ol>
 
-			<!-- Wrapper for slides -->
-			<div class="carousel-inner" role="listbox">
-				<div class="item active">
-					<img src="/assets/blue.jpg" alt="First" class="testt">
-				</div>
+				<!-- Wrapper for slides -->
+				<div class="carousel-inner" role="listbox">
+					<div class="item active">
+						<img src="/assets/blue.jpg" alt="First" class="testt">
+					</div>
 
-				<div class="item">
-					<img src="/assets/blue1.jpg" alt="Second" class="testt">
+					<div class="item">
+						<img src="/assets/blue1.jpg" alt="Second" class="testt">
+					</div>
 				</div>
+				<!-- Left and right controls -->
+				<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+					<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
 			</div>
-			<!-- Left and right controls -->
-			<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-				<span class="sr-only">Previous</span>
-			</a>
-			<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-				<span class="sr-only">Next</span>
-			</a>
 		</div>
 	</div>
 	<div class="row">
@@ -67,6 +58,6 @@
 			<h2 class="center">About Us</h2>
 		</div>
 	</div>
-	
+
 </div>
 
