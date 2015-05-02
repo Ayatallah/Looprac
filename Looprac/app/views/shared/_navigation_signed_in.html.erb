@@ -68,9 +68,11 @@
                 <% end %>
                 <% end %>
             </li>
-
+            <!-- Author: Karim Taha -->
+            <!-- User has to be an admin to view the button linking to all users -->
+            <% if current_user.admin? %>
             <li><%= link_to 'Users', :controller => "/users" %></li>
-            
+            <% end -%>
             <li><%= link_to('Edit Profile', edit_user_registration_path) %></li>
 
             <li class="divider"></li>
