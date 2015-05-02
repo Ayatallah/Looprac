@@ -6,12 +6,12 @@
 
     <div class="list-group-item clearfix">
       <% @user = @users.find(r.user_id) %> 
-      <h4 class="list-group-item-heading"> <%= link_to @user.username, @user %> offered a ride from <%= @landmarks.find(r.source_id).name %> to <%= @landmarks.find(r.destination_id).name %> </h4>
+      <h4 class="list-group-item-heading"> <% if current_user == nil %> <%= @user.username %>  <% else %> <%= link_to @user.username, @user %> <% end %> offered a ride from <%= @landmarks.find(r.source_id).name %> to <%= @landmarks.find(r.destination_id).name %> </h4>
       <p class="list-group-item-text"> Number of seats: <%= r.seatNum %> </p>
       <p class="list-group-item-text"> Description: <%= r.description %> </p>
+      <% if not current_user == nil %>
       <% if not current_user.id == r.user_id  %>
         <br>
-
 
 
          <% if @user_requests.include?(r.id) %>
@@ -31,6 +31,7 @@
           <% end %>
         <% end %>    
       <% end %>
+       <% end %>
     </div>
     <br>  
   <% end %>
@@ -39,3 +40,4 @@
 </div>
 </div>
 
+  
