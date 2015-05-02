@@ -1,5 +1,7 @@
 class SearchesController < ApplicationController
 
+	before_filter :authenticate_user!
+
 	def new
 		@search = Search.new
 	end
@@ -11,6 +13,8 @@ class SearchesController < ApplicationController
 
 	def show
 		@search = Search.find(params[:id])
+		@users = User.all
+		@user_requests=Request.where(:requester_id => current_user.id).pluck(:ride_id)
 	end
 
 	private

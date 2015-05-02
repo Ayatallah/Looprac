@@ -1,17 +1,45 @@
-<h1> Search Results </h1>
+<div class="container">
+  <div class="col-md-8">
+    <h1 class="page-header">
+      Search Results
+    </h1>
 <% if @search.search_rides.empty? %>
 	<p> No records <p>
 <% else %>
 
 	<% @search.search_rides.each do |r| %>
 <div class="list-group-item clearfix"> 
-      <h4 class="list-group-item-heading"> An available ride is from <%= r.source.name %> to <%= r.destination.name %> </h4>
+	<% @user = @users.find(r.user_id) %> 
+      <h4 class="list-group-item-heading"> <%= link_to @user.username, @user %> offered a ride from <%= r.source.name %> to <%= r.destination.name %> </h4>
       <p class="list-group-item-text"> Number of seats: <%= r.seatNum %> </p>
       <p class="list-group-item-text"> Description: <%= r.description %> </p>
       <p class="list-group-item-text"> Time: <%= r.datetime %> </p>
+      <% if not current_user.id == r.user_id || current_user == nil %>
+        <br>
+
+
+
+         <% if @user_requests.include?(r.id) %>
+        
+
+           <!-- @author: Zuishek, Modified the button to be disabled once the request has been sent -->
+           <button type="button" class="btn btn-default disabled" >Ride Request sent </button>
+           <!-- This is a link to form a new message to the owner of the ride which the user has requested -->
+           <%= link_to 'New Message', new_message_path(:userID => r.user_id), class: 'btn btn-default btn-primary' %>
+
+        <% else %>
+          <!-- @author:ISpoonJelly, added a check to see if there's a room in the Ride -->
+          <% if r.seatNum > 0 %>
+            <button type="button" class="btn btn-default" ><%= link_to 'Send Request', requests_path(:ride_id => r.id, :requester_id => current_user.id), :method => :post %></button>
+          <% else %>
+            <p style="background-color: #e94331; font-size: 90%"> Ride is fully booked</p>
+          <% end %>
+        <% end %>    
+      <% end %>
     </div>
-    <br>  
-  <% end %>
+    <br> 
+  	<% end %>
 <% end %>
 
- 
+ </div>
+</div>
