@@ -7,6 +7,8 @@ gem 'rails', '4.2.0'
 gem 'social-share-button'
 gem "mailboxer"
 gem 'devise'
+# @author: M-Alfy, added rails admin, the gem responsible for the panel.
+gem 'rails_admin'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'pry'
 gem 'sqlite3'
