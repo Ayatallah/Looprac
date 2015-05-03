@@ -6,14 +6,47 @@
 <% else %>
 
 	<% @search.search_rides.each do |r| %>
-<div class="list-group-item clearfix"> 
+	  <div class="list-group-item clearfix"> 
       <h4 class="list-group-item-heading"> An available ride is from <%= r.source.name %> to <%= r.destination.name %> </h4>
       <p class="list-group-item-text"> Number of seats: <%= r.seatNum %> </p>
-      <p class="list-group-item-text"> Description: <%= r.description %> </p>
+      <% if ! r.description.blank? %>
+      	<p class="list-group-item-text"> Description: <%= r.description %> </p>
+      <% end %>
       <p class="list-group-item-text"> Time: <%= r.datetime %> </p>
-    </div>
-    <br>  
-  <% end %>
+      <p class="list-group-item-text"> Price: <%= (r.price/100).round(2) %> LE </p>
+      <table>
+      	<td>
+	      <% if r.ac? %>
+		      <tr>
+		      	<img src="/assets/ac.png" style="width:25px;height:25px">
+		      </tr>
+	      <% end %>
+	      <% if r.smoking? %>
+		       <tr>
+		      	<img src="/assets/smoking.jpg" style="width:25px;height:25px">
+		      </tr>
+	      <% end %>
+	      <% if r.pets? %>
+		       <tr>
+		      	<img src="/assets/pet.png" style="width:25px;height:25px">
+		      </tr>
+	      <% end %>
+	      <% if r.food? %>
+		       <tr>
+		      	<img src="/assets/food.png" style="width:25px;height:25px">
+		      </tr>
+	      <% end %>
+	       <% if r.music? %>
+		       <tr>
+		     	 <img src="/assets/music.png" style="width:25px;height:25px">
+		      </tr>
+	      <% end %>
+      	</td>
+      </table>
+     </div>
+     <br>  
+  	<% end %>
 <% end %>
 
+ 
  
