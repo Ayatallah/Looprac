@@ -7,7 +7,7 @@
 
 	<% @landmarks.each do |landmark| %>
 		<h2> <%= link_to landmark.name, landmark %> </h2>
-		<p class="date"><span class="glyphicon glyphicon-time"></span><%= landmark.created_at.strftime(" %B %d, %Y") %></p>
+		<p class="date"><span class="glyphicon glyphicon-time"></span> Added on 	<%= landmark.created_at.strftime(" %B %d, %Y") %></p>
 		<hr>
 
 		<% if user_signed_in? and current_user.admin? %>
@@ -23,7 +23,8 @@
 	<% else%>
 		<button type="button" class="btn btn-default"><%= link_to 'Suggest New landmark', new_landmark_path %></button>
 	<% end %>
-
+	<br>
+	<br>
 	<p>
 		<button type="button" class="btn btn-default"><%= link_to 'Back', root_path %></button>
     </p>
