@@ -1,7 +1,9 @@
-
+<div class="container">
+  <div class="col-md-8">
+    <h1 class="page-header">
+      Advanced Search
+    </h1>
 <div class="well">
-  <h3> Advanced Search </h3>
-  <br>
   <%= simple_form_for @search do |f| %>
  <div class="form-group">
   <%= f.association :source, label: "From" %>
@@ -24,6 +26,8 @@
   <%= f.input :music, label: 'I want to be able to listen to music inside the car.' %>
   <%= f.button :submit , 'Submit Search', class: "btn btn-primary"%>
 <% end %>
+  </div>
+</div>
 <script type="text/javascript">
 $(function () {
             $('#datetimepicker1').datetimepicker({

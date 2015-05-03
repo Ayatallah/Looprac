@@ -5,7 +5,9 @@ class RidesController < ApplicationController
 		@rides_ids=Ride.pluck(:id)
 		@landmarks=Landmark.all 
 		@users=User.all
-		@user_requests=Request.where(:requester_id => current_user.id).pluck(:ride_id)	
+		if current_user != nil
+		@user_requests=Request.where(:requester_id => current_user.id).pluck(:ride_id)
+		end		
 		@rides=@rides.reverse
 	end
 
