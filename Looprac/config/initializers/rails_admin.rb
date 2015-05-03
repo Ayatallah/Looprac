@@ -1,5 +1,7 @@
 RailsAdmin.config do |config|
 
+# @author: M-Alfy, this coded is added from the documentation of rails admin to make sure only admins can acess
+# the panel.
   config.authorize_with do
     redirect_to main_app.root_path unless warden.user.admin == true
   end

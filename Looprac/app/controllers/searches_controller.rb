@@ -1,6 +1,9 @@
 class SearchesController < ApplicationController
 
 	before_filter :authenticate_user!
+	# @author: M-Alfy, controller is for the advanced search with only certain actions.
+	# The new is for entering a new query, it goes to the search model and uses the engine.
+	# The result is created using create and then shown by the show action.
 
 	def new
 		@search = Search.new
