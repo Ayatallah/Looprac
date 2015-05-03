@@ -6,9 +6,44 @@
 
     <div class="list-group-item clearfix">
       <% @user = @users.find(r.user_id) %> 
-      <h4 class="list-group-item-heading"> <%= link_to @user.username, @user %> offered a ride from <%= @landmarks.find(r.source_id).name %> to <%= @landmarks.find(r.destination_id).name %> </h4>
+      <h4 class="list-group-item-heading"> <%= link_to @user.username, @user %> offered a ride from <%= @landmarks.find(r.source_id).name %> to <%= @landmarks.find(r.destination_id).name %> 
+      </h4>
       <p class="list-group-item-text"> Number of seats: <%= r.seatNum %> </p>
-      <p class="list-group-item-text"> Description: <%= r.description %> </p>
+      <% if ! r.description.blank? %>
+        <p class="list-group-item-text"> Description: <%= r.description %> </p>
+      <% end %>
+      <p class="list-group-item-text"> Time: <%= r.datetime %> </p>
+      <p class="list-group-item-text"> Price: <%= (r.price).round(2) %> LE </p>
+      <table>
+        <td>
+        <% if r.ac? %>
+          <tr>
+            <img src="/assets/ac.png" style="width:25px;height:25px">
+          </tr>
+        <% end %>
+        <% if r.smoking? %>
+           <tr>
+            <img src="/assets/smoking.jpg" style="width:25px;height:25px">
+          </tr>
+        <% end %>
+        <% if r.pets? %>
+           <tr>
+            <img src="/assets/pet.png" style="width:25px;height:25px">
+          </tr>
+        <% end %>
+        <% if r.food? %>
+           <tr>
+            <img src="/assets/food.png" style="width:25px;height:25px">
+          </tr>
+        <% end %>
+         <% if r.music? %>
+           <tr>
+           <img src="/assets/music.png" style="width:25px;height:25px">
+          </tr>
+        <% end %>
+        </td>
+      </table>
+
       <% if not current_user.id == r.user_id  %>
         <br>
 

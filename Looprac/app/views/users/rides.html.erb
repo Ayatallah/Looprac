@@ -14,7 +14,7 @@
         <p class="list-group-item-text"> Description: <%= r.description %> </p>
       <% end %>
       <p class="list-group-item-text"> Time: <%= r.datetime %> </p>
-      <p class="list-group-item-text"> Price: <%= (r.price/100).round(2) %> LE </p>
+      <p class="list-group-item-text"> Price: <%= (r.price).round(2) %> LE </p>
       <table>
         <td>
         <% if r.ac? %>
