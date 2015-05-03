@@ -36,11 +36,11 @@ Landmark.create(name: 'Liverpool', latitude: 100, longitude: 200, description: "
 Landmark.create(name: 'GUC', latitude: 100, longitude: 200, description: "Land")
 Landmark.create(name: 'AUC', latitude: 100, longitude: 200, description: "Land")
 Landmark.create(name: 'Sherook', latitude: 100, longitude: 200, description: "Land")
-Ride.create(user_id: 1, source_id: 1, destination_id: 2, seatNum: 4, description: "Hi")
-Ride.create(user_id: 1, source_id: 1, destination_id: 3, seatNum: 4, description: "Hi")
-Ride.create(user_id: 1, source_id: 2, destination_id: 3, seatNum: 4, description: "Hi")
-Ride.create(user_id: 1, source_id: 3, destination_id: 1, seatNum: 4, description: "Hi")
-Ride.create(user_id: 1, source_id: 4, destination_id: 5, seatNum: 4, description: "Hi")
-Ride.create(user_id: 1, source_id: 4, destination_id: 3, seatNum: 4, description: "Hi")
+#Ride.create(user_id: 1, source_id: 1, destination_id: 2, seatNum: 4, description: "Hi")
+#Ride.create(user_id: 1, source_id: 1, destination_id: 3, seatNum: 4, description: "Hi")
+#Ride.create(user_id: 1, source_id: 2, destination_id: 3, seatNum: 4, description: "Hi")
+#Ride.create(user_id: 1, source_id: 3, destination_id: 1, seatNum: 4, description: "Hi")
+#Ride.create(user_id: 1, source_id: 4, destination_id: 5, seatNum: 4, description: "Hi")
+#Ride.create(user_id: 1, source_id: 4, destination_id: 3, seatNum: 4, description: "Hi")
 #
 

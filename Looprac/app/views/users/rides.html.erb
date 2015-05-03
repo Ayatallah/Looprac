@@ -8,9 +8,42 @@
 <div class="list-group">
   <% @rides.each do |r| %>
   <li class="list-group-item">
-    <h4 class="list-group-item-heading">Ride from <%= @landmarks.find(r.source_id).name %> to <%= @landmarks.find(r.destination_id).name %> </h4>
-    <p class="list-group-item-text"> Description: <%= r.description %> </p>
-    <p class="list-group-item-text">  <%= r.datetime %> </p>
+      <h4 class="list-group-item-heading"> Ride is from <%= r.source.name %> to <%= r.destination.name %> </h4>
+      <p class="list-group-item-text"> Number of seats: <%= r.seatNum %> </p>
+      <% if ! r.description.blank? %>
+        <p class="list-group-item-text"> Description: <%= r.description %> </p>
+      <% end %>
+      <p class="list-group-item-text"> Time: <%= r.datetime %> </p>
+      <p class="list-group-item-text"> Price: <%= (r.price).round(2) %> LE </p>
+      <table>
+        <td>
+        <% if r.ac? %>
+          <tr>
+            <img src="/assets/ac.png" style="width:25px;height:25px">
+          </tr>
+        <% end %>
+        <% if r.smoking? %>
+           <tr>
+            <img src="/assets/smoking.jpg" style="width:25px;height:25px">
+          </tr>
+        <% end %>
+        <% if r.pets? %>
+           <tr>
+            <img src="/assets/pet.png" style="width:25px;height:25px">
+          </tr>
+        <% end %>
+        <% if r.food? %>
+           <tr>
+            <img src="/assets/food.png" style="width:25px;height:25px">
+          </tr>
+        <% end %>
+         <% if r.music? %>
+           <tr>
+           <img src="/assets/music.png" style="width:25px;height:25px">
+          </tr>
+        <% end %>
+        </td>
+      </table>
   </a>
   </li>
 
