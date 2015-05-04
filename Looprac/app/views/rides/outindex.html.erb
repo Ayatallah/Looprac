@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="col-md-8">
+    <h1 class="page-header">
+      <font color="#01A9DB">Search Results</font>
+    </h1>
+      <div class="row">
+        <div class="col-sm-7">
+          <br>
+          <div class="list-group">
+            <% @rides.each do |r| %>
+
+            <div class="list-group-item clearfix">
+              <% @user = @users.find(r.user_id) %> 
+              <h4 class="list-group-item-heading">
+              <%= @user.username %> offered a ride from <%= @landmarks.find(r.source_id).name %> to <%= @landmarks.find(r.destination_id).name %>
+              </h4>
+              <p class="list-group-item-text"> Number of seats: <%= r.seatNum %> </p>
+              <% if ! r.description.blank? %>
+              <p class="list-group-item-text"> Description: <%= r.description %> </p>
+              <% end %>
+              <p class="list-group-item-text"> Time: <%= r.datetime %> </p>
+              <p class="list-group-item-text"> Price: <%= (r.price).round(2) %> LE </p>
+                <%= render 'table' %>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+  

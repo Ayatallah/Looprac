@@ -9,6 +9,11 @@ class RidesController < ApplicationController
 		@user_requests=Request.where(:requester_id => current_user.id).pluck(:ride_id)
 		end		
 		@rides=@rides.reverse
+		if current_user
+			render 'inindex'
+		else
+			render 'outindex'
+		end
 	end
 
 	def show
