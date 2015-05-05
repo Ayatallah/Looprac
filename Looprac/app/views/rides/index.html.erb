@@ -11,6 +11,7 @@
         <br>
 
          <% if @user_requests.include?(r.id) %>
+         <!-- @author: Zuishek, Modified the button to be disabled once the request has been sent -->
            <button type="button" class="btn btn-default disabled" >Ride Request sent </button>
 
         <% else %>
