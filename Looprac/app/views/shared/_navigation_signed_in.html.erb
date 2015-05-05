@@ -12,6 +12,10 @@
           </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav nav-tabs navbar-nav navbar-right">
+
+        <% if user_signed_in? and current_user.admin? %>
+          <li><%= link_to 'Review Rides', rides_adminReview_path %></li>
+        <% end %>
         <li> <%= link_to 'Blog', :controller => "/posts" %> </li>
         <li>
           <%= link_to(conversations_path) do %>
@@ -35,7 +39,6 @@
             <li><%= link_to 'Rides', rides_userView_path %>   </li>
             <li><%= link_to 'Users', :controller => "/users" %></li>
             <li><%= link_to('Edit Profile', edit_user_registration_path) %></li>
-            <li><%= link_to('Settings', '/welcome/user_settings') %></li>
 
             <li class="divider"></li>
             <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %>   </li>

@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
 	before_action :authenticate_user!
-
+    #@author: Zuishek
+    # new method fetches the id of the owner of the ride and puts it in a variable called @receiver so the new message view can know the id of the owner
 	def new
 		@receiver = params[:userID]
 	end
