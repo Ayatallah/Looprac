@@ -14,7 +14,7 @@ class RequestsController < ApplicationController
 			@landmarks.push(@destination)
 			@requesters.push(@user)
 		end	
-		#@requesters=User.where(:requester_id => )
+		
 	end	
 
 	def create
@@ -23,6 +23,7 @@ class RequestsController < ApplicationController
 		@offerer_id=@ride.user_id
 		@requester_id=params[:requester_id]
 
+		# @author: ahmedtarek-, added new lines to the requests_controller
 		#Handling case of an already reserved ride in same time
 		@user_requests=Request.where(:requester_id => current_user.id, :response => true).pluck(:ride_id)		
 		@user_requests.each do |u|
