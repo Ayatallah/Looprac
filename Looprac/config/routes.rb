@@ -45,7 +45,7 @@ end
 
 resources :users do
   member do
-    get :ratings, :ban, :rides, :reports
+    get :ratings, :ban, :ridesOffered, :reports, :ridesTaken
   end
 end
 resources :rides

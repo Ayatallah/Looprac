@@ -34,10 +34,21 @@ class UsersController < ApplicationController
 		@reports = Report.where("reported" == User.find_by_id(@user.id).username)
 	end
 	
-	def rides
+	def ridesOffered
 		@user = User.find(params[:id])
 		@landmarks = Landmark.all
 		@rides = Ride.where(user_id: @user.id)
+	end
+
+	def ridesTaken
+		@user = User.find(params[:id])
+		@landmarks = Landmark.all
+		@requests = Request.where(requester_id: @user.id, response: true)
+		@rides = Array.new
+		@requests.each do |r|
+			@ride = Ride.find(r.ride_id)
+			@rides.push(@ride)
+		end
 	end
 
 
