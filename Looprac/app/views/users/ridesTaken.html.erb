@@ -1,5 +1,6 @@
 <ul class="nav nav-tabs">
-  <li role="presentation" class="active"><a href="#">Rides</a></li>
+  <li role="presentation"><%= link_to 'Rides Offered', ridesOffered_user_path(@user) %></li>
+  <li role="presentation" class="active"><a href="#">Rides Taken</a></li>
   <li role="presentation"><%= link_to 'Reviews', ratings_user_path(@user) %></li>
   <li role="presentation"><%= link_to 'Reports', reports_user_path(@user) %></li>
 </ul>
@@ -8,7 +9,7 @@
 <div class="list-group">
   <% @rides.each do |r| %>
   <li class="list-group-item">
-      <h4 class="list-group-item-heading"> Ride is from <%= r.source.name %> to <%= r.destination.name %> </h4>
+      <h4 class="list-group-item-heading"> Ride taken from <%= r.source.name %> to <%= r.destination.name %> with <%= link_to r.user.username, r.user %> </h4>
       <p class="list-group-item-text"> Number of seats: <%= r.seatNum %> </p>
       <% if ! r.description.blank? %>
         <p class="list-group-item-text"> Description: <%= r.description %> </p>
