@@ -23,6 +23,9 @@ module NavigationHelpers
   when /the messages page/
     conversations_path
  
+  when /the offer ride page/
+    rides_offer_path
+
   when /the edit registration page/
     edit_user_registration_path
     # Here is an example that pulls values out of the Regexp:
