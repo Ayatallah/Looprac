@@ -1,4 +1,6 @@
 class RidesController < ApplicationController
+
+	# @author: ahmedtarek-, added before_filter to the rides_controller
 	before_filter :ensure_admin!, :only => [:adminReview, :adminDecision]
 	def index
 		@rides = Ride.search(params[:searchStart],params[:searchEnd],params[:searchDate]).where(:reviewed => true)
@@ -28,6 +30,7 @@ class RidesController < ApplicationController
 
 	end
 
+	# @author: ahmedtarek-, added adminReview to the rides_controller
 	def adminReview
 		@rides=Ride.where(:reviewed => nil).reverse
 		@landmarks=Array.new
@@ -43,6 +46,7 @@ class RidesController < ApplicationController
 
 	end	
 
+	# @author: ahmedtarek-, added adminDecision to the rides_controller
 	def adminDecision
 		@ride=Ride.find(params[:id])
 		@flag = params[:flag]
@@ -122,7 +126,8 @@ class RidesController < ApplicationController
 		# @author: ISpoonJelly, added Rides options to ride_params
 		params.require(:ride).permit(:source_id, :destination_id, :seatNum, :datetime, :description, :ac, :music, :smoking, :food, :pets).merge(price: @price)
 	end
-
+	
+# @author: ahmedtarek-, added ensure_admin! to the rides_controller
 private
   def ensure_admin!
     unless current_user.admin?
